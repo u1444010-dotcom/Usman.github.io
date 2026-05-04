@@ -78,6 +78,19 @@
 
 <div id="sectionsWrapper">
     
+    <h2 class="section-title">🌟 New Arrivals</h2>
+    <div class="container">
+        <div class="card tech">
+            <button class="wish-btn" onclick="toggleWish(this)"><i class="fa fa-heart"></i></button>
+            <img src="https://m.media-amazon.com/images/I/61S8vVInYpL._AC_SL1500_.jpg" alt="Smart Health Ring">
+            <h3>Smart Health & Fitness Ring</h3>
+            <p class="review-text">"User says: The future of tracking on your finger!"</p>
+            <div class="stars">★★★★★</div>
+            <p style="font-size: 0.75rem; color: #666; padding: 0 10px;">Heart Rate, Sleep & Sleep Tracker (IP68 Waterproof)</p>
+            <a href="https://www.amazon.com/dp/B0GHTYJ24L?tag=mobilecompa09-20" target="_blank" class="btn">View on Amazon</a>
+        </div>
+    </div>
+
     <h2 class="section-title">🔥 Best Sellers</h2>
     <div class="container">
         <div class="card home">
@@ -163,7 +176,6 @@
         let cards = document.getElementsByClassName('card');
         let titles = document.getElementsByClassName('section-title');
 
-        // Hide titles during search for better look
         for(let t of titles) { t.style.display = input === "" ? "" : "none"; }
 
         for (let card of cards) {
@@ -187,12 +199,12 @@
         } else {
             soonMsg.style.display = "none";
             sections.classList.remove('hidden');
-            for(let t of titles) { t.style.display = "none"; } // Hide titles in filter mode
+            for(let t of titles) { t.style.display = "none"; }
 
             for (let card of cards) {
                 if (cat === 'all') {
                     card.style.display = "";
-                    for(let t of titles) { t.style.display = ""; } // Show titles back for 'all'
+                    for(let t of titles) { t.style.display = ""; }
                 } else if (card.classList.contains(cat)) {
                     card.style.display = "";
                 } else {
@@ -202,7 +214,6 @@
         }
     }
 
-    // Back to Top
     window.onscroll = function() {
         var btn = document.getElementById("backToTop");
         btn.style.display = (document.documentElement.scrollTop > 300) ? "block" : "none";
