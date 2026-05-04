@@ -51,6 +51,11 @@
         .stars { color: #f1c40f; font-size: 1.2rem; margin: 10px 0; }
         .btn { display: inline-block; background-color: #e67e22; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; }
 
+        /* Privacy Section Styling */
+        .privacy-section { padding: 40px 20px; max-width: 900px; margin: 40px auto; line-height: 1.6; font-size: 0.9rem; color: var(--text-color); border-top: 2px solid #e67e22; background: var(--card-bg); border-radius: 10px; }
+        .privacy-section h2 { color: #e67e22; text-align: center; }
+        .privacy-section h3 { color: #e67e22; margin-top: 20px; }
+
         #backToTop { position: fixed; bottom: 30px; right: 30px; background-color: #2c3e50; color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: none; z-index: 1000; }
         .hidden { display: none !important; }
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 20px; }
@@ -78,6 +83,7 @@
     <a onclick="filterBy('home')">Home</a>
     <a onclick="filterBy('tech')">Tech</a>
     <a onclick="filterBy('mobile-comp')">Mobile Comparison</a>
+    <a href="#privacy-policy">Privacy Policy</a>
 </nav>
 
 <div id="comingSoonMsg">📱 Mobile Comparison - Coming Soon!</div>
@@ -143,127 +149,3 @@
 
     <h2 class="section-title">🎓 Student Tech Must-Haves</h2>
     <div class="container">
-        <div class="card tech">
-            <button class="wish-btn" onclick="toggleWish(this)"><i class="fa fa-heart"></i></button>
-            <img src="https://m.media-amazon.com/images/I/71p0WfL-YPL._AC_SL1500_.jpg" alt="Fidget Pen">
-            <h3>Magnetic Fidget Pen</h3>
-            <p class="review-text">"Focus & Creativity!"</p>
-            <div class="details-box">
-                <ul>
-                    <li><b>Modular:</b> Built from strong magnetic rings.</li>
-                    <li><b>Decompression:</b> Relieves stress during study.</li>
-                    <li><b>Writing:</b> Includes high-quality ink refills.</li>
-                    <li><b>Versatile:</b> Create shapes, toys, or desktop art.</li>
-                </ul>
-            </div>
-            <div class="stars">★★★★☆</div>
-            <a href="https://www.amazon.com/dp/B0BNL497T6" target="_blank" class="btn">View on Amazon</a>
-        </div>
-
-        <div class="card tech">
-            <button class="wish-btn" onclick="toggleWish(this)"><i class="fa fa-heart"></i></button>
-            <img src="https://i.ibb.co/DqLcR3k/image.jpg" alt="Mobile Case">
-            <h3>Luxury Mobile Case</h3>
-            <p class="review-text">"Ultimate Shield!"</p>
-            <div class="details-box">
-                <ul>
-                    <li><b>Design:</b> Ultra-slim luxury aesthetic.</li>
-                    <li><b>Shockproof:</b> Advanced military-grade protection.</li>
-                    <li><b>Material:</b> Anti-fingerprint premium finish.</li>
-                    <li><b>Precision:</b> Exact cutouts for buttons & ports.</li>
-                </ul>
-            </div>
-            <div class="stars">★★★★★</div>
-            <a href="https://www.amazon.com/dp/B0D531KWFV" target="_blank" class="btn">View on Amazon</a>
-        </div>
-    </div>
-
-</div>
-<footer>
-    <p>&copy; 2026 Usman Gadget Store. All Rights Reserved.</p>
-</footer>
-
-<script>
-    // 1. Dark Mode Logic
-    function toggleTheme() {
-        document.body.classList.toggle('dark-mode');
-        let icon = document.getElementById('themeIcon');
-        if(document.body.classList.contains('dark-mode')) {
-            icon.classList.replace('fa-moon-o', 'fa-sun-o');
-        } else {
-            icon.classList.replace('fa-sun-o', 'fa-moon-o');
-        }
-    }
-
-    // 2. Wishlist Logic
-    function toggleWish(btn) {
-        btn.classList.toggle('active');
-        if(btn.classList.contains('active')) {
-            alert("Added to your wishlist! ❤️");
-        }
-    }
-
-    // 3. Surprise Me (Random Picker)
-    function surpriseMe() {
-        let cards = document.getElementsByClassName('card');
-        let random = Math.floor(Math.random() * cards.length);
-        let title = cards[random].getElementsByTagName('h3')[0].innerText;
-        
-        alert("🎲 Usman Suggests: " + title);
-        cards[random].scrollIntoView({ behavior: 'smooth', block: 'center' });
-        cards[random].style.boxShadow = "0 0 20px #e67e22";
-        setTimeout(() => { cards[random].style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)"; }, 2000);
-    }
-
-    // 4. Search Logic
-    function searchGadgets() {
-        let input = document.getElementById('gadgetSearch').value.toLowerCase();
-        let cards = document.getElementsByClassName('card');
-        let titles = document.getElementsByClassName('section-title');
-
-        for(let t of titles) { t.style.display = input === "" ? "" : "none"; }
-
-        for (let card of cards) {
-            let title = card.getElementsByTagName('h3')[0].innerText.toLowerCase();
-            card.style.display = title.includes(input) ? "" : "none";
-        }
-    }
-
-    // 5. Category Filter
-    function filterBy(cat) {
-        let cards = document.getElementsByClassName('card');
-        let soonMsg = document.getElementById('comingSoonMsg');
-        let sections = document.getElementById('sectionsWrapper');
-        let titles = document.getElementsByClassName('section-title');
-
-        document.getElementById('gadgetSearch').value = "";
-
-        if (cat === 'mobile-comp') {
-            sections.classList.add('hidden');
-            soonMsg.style.display = "block";
-        } else {
-            soonMsg.style.display = "none";
-            sections.classList.remove('hidden');
-            for(let t of titles) { t.style.display = "none"; }
-
-            for (let card of cards) {
-                if (cat === 'all') {
-                    card.style.display = "";
-                    for(let t of titles) { t.style.display = ""; }
-                } else if (card.classList.contains(cat)) {
-                    card.style.display = "";
-                } else {
-                    card.style.display = "none";
-                }
-            }
-        }
-    }
-
-    window.onscroll = function() {
-        var btn = document.getElementById("backToTop");
-        btn.style.display = (document.documentElement.scrollTop > 300) ? "block" : "none";
-    };
-</script>
-
-</body>
-</html>
