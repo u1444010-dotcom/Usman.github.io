@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Amazon Store</title>
+    <title>My Smart Store</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background: #f4f4f4; margin: 0; padding: 20px; }
-        h1 { color: #232f3e; }
+        h1 { color: #232f3e; margin-bottom: 5px; }
+        .sub-text { color: #555; margin-bottom: 30px; }
+        
+        /* Category Heading Style */
+        .category-header { 
+            background: #232f3e; 
+            color: white; 
+            padding: 12px 25px; 
+            display: inline-block; 
+            border-radius: 30px; 
+            margin: 40px 0 20px 0;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
         .product-container { 
             display: flex; 
             justify-content: center; 
@@ -16,7 +31,7 @@
         }
         .product { 
             background: white; 
-            width: 300px; 
+            width: 280px; 
             margin: 15px; 
             padding: 20px; 
             border-radius: 15px; 
@@ -27,7 +42,7 @@
             justify-content: space-between;
         }
         .product:hover { transform: translateY(-5px); }
-        img { width: 100%; border-radius: 10px; height: 220px; object-fit: contain; background: #fff; }
+        img { width: 100%; border-radius: 10px; height: 200px; object-fit: contain; background: #fff; }
         h3 { color: #111; font-size: 1.1rem; margin: 15px 0; height: 50px; overflow: hidden; }
         .desc { color: #555; font-size: 0.85rem; line-height: 1.4; height: 60px; overflow: hidden; margin-bottom: 10px; }
         .btn { display: block; background: #ff9900; color: black; padding: 12px; text-decoration: none; font-weight: bold; margin-top: auto; border-radius: 25px; border: 1px solid #a88734; }
@@ -37,8 +52,9 @@
 <body>
 
     <h1>Welcome to My Store</h1>
-    <p>Handpicked Best Deals Just for You</p>
+    <p class="sub-text">Handpicked Best Deals Just for You</p>
 
+    <div class="category-header">🚀 Cool Gadgets</div>
     <div class="product-container">
         
         <div class="product">
@@ -49,13 +65,6 @@
         </div>
 
         <div class="product">
-            <img src="https://m.media-amazon.com/images/I/71p0WfL-YPL._AC_SL1500_.jpg" alt="Magnetic Fidget Pen">
-            <h3>Multifunctional Magnetic Fidget Pen</h3>
-            <p class="desc">Stress relief aur creativity ke liye behtareen magnetic pen. Teens aur office workers ke liye ek cool gift gadget.</p>
-            <a href="https://www.amazon.com/Magnetic-Fidget-Pen-Gifts-Teens/dp/B0BNL497T6?tag=mobilecompa09-20" target="_blank" class="btn">Amazon Se Khareedein</a>
-        </div>
-
-        <div class="product">
             <img src="https://m.media-amazon.com/images/I/719-XpY33vL._AC_SL1500_.jpg" alt="Levitating Moon Lamp">
             <h3>Floating Levitating Moon Lamp</h3>
             <p class="desc">Hawa mein udne wala chand! 3D printing technology se bana ye lamp aapke room ko magical look deta hai.</p>
@@ -63,6 +72,18 @@
         </div>
 
     </div>
+
+    <div class="category-header">📱 Mobile Accessories</div>
+    <div class="product-container">
+        
+        <div class="product">
+            <img src="https://m.media-amazon.com/images/I/71p0WfL-YPL._AC_SL1500_.jpg" alt="Magnetic Fidget Pen">
+            <h3>Multifunctional Magnetic Fidget Pen</h3>
+            <p class="desc">Stress relief aur creativity ke liye behtareen magnetic pen. Teens aur office workers ke liye ek cool gadget.</p>
+            <a href="https://www.amazon.com/Magnetic-Fidget-Pen-Gifts-Teens/dp/B0BNL497T6?tag=mobilecompa09-20" target="_blank" class="btn">Amazon Se Khareedein</a>
+        </div>
+
+        </div>
 
 </body>
 </html>
