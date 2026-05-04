@@ -3,37 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Gadget Store | Usman</title>
+    <title>Smart Gear PK | Usman</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         :root { --bg-color: #f4f4f9; --text-color: #333; --card-bg: white; --nav-bg: #2c3e50; }
         .dark-mode { --bg-color: #1a1a2e; --text-color: #f4f4f9; --card-bg: #16213e; --nav-bg: #0f3460; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); scroll-behavior: smooth; transition: 0.3s; }
+        
+        /* Logo and Header Styling */
+        header { background-color: var(--nav-bg); color: white; padding: 30px 20px; text-align: center; }
+        .logo-img { height: 80px; margin-bottom: 10px; filter: drop-shadow(0 0 10px rgba(230, 126, 34, 0.5)); }
+        header h1 { margin: 5px 0; font-size: 2.2rem; letter-spacing: 1px; }
+
         .controls { position: fixed; top: 80px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
         .control-btn { padding: 12px; border-radius: 50%; border: none; cursor: pointer; background: #e67e22; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        header { background-color: var(--nav-bg); color: white; padding: 20px; text-align: center; }
+        
         .search-bar { margin-top: 15px; display: flex; justify-content: center; }
         .search-bar input { padding: 10px; width: 250px; border-radius: 5px 0 0 5px; border: none; outline: none; }
         .search-bar button { padding: 10px 15px; background: #e67e22; border: none; color: white; border-radius: 0 5px 5px 0; cursor: pointer; }
-        .category-nav { background: var(--card-bg); padding: 15px; text-align: center; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; }
+        
+        .category-nav { background: var(--card-bg); padding: 15px; text-align: center; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .category-nav a { margin: 0 15px; text-decoration: none; color: var(--text-color); font-weight: bold; font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
         .category-nav a:hover { color: #e67e22; }
+        
         .section-title { color: #e67e22; margin: 40px 0 10px; font-size: 1.8rem; text-align: center; }
         #comingSoonMsg { display: none; padding: 50px; font-size: 1.5rem; font-weight: bold; color: #e67e22; text-align: center; }
         .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
         .card { background: var(--card-bg); border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 15px; width: 320px; overflow: hidden; transition: 0.3s; text-align: center; padding-bottom: 20px; position: relative; }
         .card:hover { transform: translateY(-10px); }
         .card img { width: 100%; height: 220px; object-fit: contain; background: white; padding: 10px; }
+        
         .wish-btn { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.8); border: none; border-radius: 50%; padding: 8px; cursor: pointer; color: #ccc; transition: 0.3s; }
         .wish-btn.active { color: #e74c3c; }
+        
         .review-text { font-style: italic; font-size: 0.85rem; color: #e67e22; padding: 0 15px; margin: 5px 0; font-weight: bold; }
         .details-box { text-align: left; padding: 0 15px; font-size: 0.85rem; color: var(--text-color); }
         .details-box ul { padding-left: 18px; margin: 5px 0; }
         .stars { color: #f1c40f; font-size: 1.2rem; margin: 10px 0; }
+        
         .btn { display: inline-block; background-color: #e67e22; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; transition: 0.3s; }
         .btn:hover { background-color: #d35400; }
         
-        /* WhatsApp Share Button Style */
         .share-wa { display: inline-block; background-color: #25D366; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; margin-top: 10px; margin-left: 5px; font-weight: bold; font-size: 0.9rem; }
         .share-wa:hover { background-color: #128C7E; }
 
@@ -56,7 +66,8 @@
 <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="backToTop">↑</button>
 
 <header>
-    <h1>Smart Gadget Store</h1>
+    <img src="https://i.ibb.co/v6m80Y9/smart-gear-pk-logo.png" alt="Smart Gear PK Logo" class="logo-img">
+    <h1>Smart Gear PK</h1>
     <div class="search-bar">
         <input type="text" id="gadgetSearch" placeholder="Search gadgets..." onkeyup="searchGadgets()">
         <button><i class="fa fa-search"></i></button>
@@ -64,8 +75,8 @@
 </header>
 
 <nav class="category-nav">
-    <a onclick="filterBy('all')">All</a>
-    <a onclick="filterBy('tech')">Tech</a>
+    <a onclick="filterBy('all')">All Products</a>
+    <a onclick="filterBy('tech')">Gadgets</a>
     <a onclick="filterBy('mobile-comp')">Mobile Comparison</a>
     <a href="#privacy-policy">Privacy Policy</a>
 </nav>
@@ -147,12 +158,12 @@
 
     <div id="privacy-policy" class="privacy-section">
         <h2 style="color: #e67e22; text-align: center;">Privacy Policy</h2>
-        <p>Welcome to <b>Usman Gadget Store</b>. We do not collect personal data. We earn a small commission on qualifying Amazon purchases.</p>
+        <p>Welcome to <b>Smart Gear PK</b>. We do not collect personal data. We earn a small commission on qualifying Amazon purchases through affiliate links.</p>
     </div>
 
 </div>
 
-<footer><p>&copy; 2026 Usman Gadget Store. All Rights Reserved.</p></footer>
+<footer><p>&copy; 2026 Smart Gear PK | Usman Gadget Store. All Rights Reserved.</p></footer>
 
 <script>
     function toggleTheme() {
@@ -163,9 +174,8 @@
     }
     function toggleWish(btn) { btn.classList.toggle('active'); if(btn.classList.contains('active')) alert("Added to wishlist! ❤️"); }
     
-    // WhatsApp Share Function
     function shareOnWhatsApp(name, link) {
-        let text = "Check out this awesome gadget at Usman Store: " + name + " - " + link;
+        let text = "Check out this awesome gadget at Smart Gear PK: " + name + " - " + link;
         window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text));
     }
 
