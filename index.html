@@ -10,50 +10,32 @@
         .dark-mode { --bg-color: #1a1a2e; --text-color: #f4f4f9; --card-bg: #16213e; --nav-bg: #0f3460; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); scroll-behavior: smooth; transition: 0.3s; }
         
-        /* Logo and Header Styling */
         header { background-color: var(--nav-bg); color: white; padding: 30px 20px; text-align: center; }
-        .logo-img { height: 80px; margin-bottom: 10px; filter: drop-shadow(0 0 10px rgba(230, 126, 34, 0.5)); }
-        header h1 { margin: 5px 0; font-size: 2.2rem; letter-spacing: 1px; }
+        /* Logo Styling */
+        .logo-img { height: 70px; max-width: 250px; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto; filter: drop-shadow(0 0 5px rgba(230, 126, 34, 0.5)); }
+        header h1 { margin: 5px 0; font-size: 2rem; letter-spacing: 1px; color: #e67e22; }
 
         .controls { position: fixed; top: 80px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
         .control-btn { padding: 12px; border-radius: 50%; border: none; cursor: pointer; background: #e67e22; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        
         .search-bar { margin-top: 15px; display: flex; justify-content: center; }
         .search-bar input { padding: 10px; width: 250px; border-radius: 5px 0 0 5px; border: none; outline: none; }
         .search-bar button { padding: 10px 15px; background: #e67e22; border: none; color: white; border-radius: 0 5px 5px 0; cursor: pointer; }
-        
         .category-nav { background: var(--card-bg); padding: 15px; text-align: center; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .category-nav a { margin: 0 15px; text-decoration: none; color: var(--text-color); font-weight: bold; font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
         .category-nav a:hover { color: #e67e22; }
-        
         .section-title { color: #e67e22; margin: 40px 0 10px; font-size: 1.8rem; text-align: center; }
         #comingSoonMsg { display: none; padding: 50px; font-size: 1.5rem; font-weight: bold; color: #e67e22; text-align: center; }
         .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
         .card { background: var(--card-bg); border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 15px; width: 320px; overflow: hidden; transition: 0.3s; text-align: center; padding-bottom: 20px; position: relative; }
-        .card:hover { transform: translateY(-10px); }
         .card img { width: 100%; height: 220px; object-fit: contain; background: white; padding: 10px; }
-        
         .wish-btn { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.8); border: none; border-radius: 50%; padding: 8px; cursor: pointer; color: #ccc; transition: 0.3s; }
         .wish-btn.active { color: #e74c3c; }
-        
-        .review-text { font-style: italic; font-size: 0.85rem; color: #e67e22; padding: 0 15px; margin: 5px 0; font-weight: bold; }
-        .details-box { text-align: left; padding: 0 15px; font-size: 0.85rem; color: var(--text-color); }
-        .details-box ul { padding-left: 18px; margin: 5px 0; }
-        .stars { color: #f1c40f; font-size: 1.2rem; margin: 10px 0; }
-        
-        .btn { display: inline-block; background-color: #e67e22; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background-color: #d35400; }
-        
-        .share-wa { display: inline-block; background-color: #25D366; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; margin-top: 10px; margin-left: 5px; font-weight: bold; font-size: 0.9rem; }
-        .share-wa:hover { background-color: #128C7E; }
-
-        .privacy-section { padding: 40px 20px; max-width: 900px; margin: 40px auto; line-height: 1.6; font-size: 0.9rem; color: var(--text-color); border-top: 2px solid #e67e22; background: var(--card-bg); border-radius: 10px; }
+        .btn { display: inline-block; background-color: #e67e22; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; }
+        .share-wa { display: inline-block; background-color: #25D366; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; margin-top: 10px; margin-left: 5px; font-weight: bold; }
+        .privacy-section { padding: 40px 20px; max-width: 900px; margin: 40px auto; border-top: 2px solid #e67e22; background: var(--card-bg); border-radius: 10px; }
         #backToTop { position: fixed; bottom: 30px; right: 30px; background-color: #2c3e50; color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: none; z-index: 1000; }
         .hidden { display: none !important; }
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 20px; }
-        .model-select { width: 90%; padding: 8px; border-radius: 5px; border: 1px solid #ddd; margin: 10px auto; display: block; font-size: 0.8rem; }
-        .color-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 10px; }
-        .dot { height: 15px; width: 15px; border-radius: 50%; cursor: pointer; border: 1px solid #ccc; }
     </style>
 </head>
 <body>
@@ -66,7 +48,7 @@
 <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="backToTop">↑</button>
 
 <header>
-    <img src="https://i.ibb.co/v6m80Y9/smart-gear-pk-logo.png" alt="Smart Gear PK Logo" class="logo-img">
+    <img src="https://i.postimg.cc/8zQvX3fR/smart-gear-pk-logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/200x80?text=Smart+Gear+PK'">
     <h1>Smart Gear PK</h1>
     <div class="search-bar">
         <input type="text" id="gadgetSearch" placeholder="Search gadgets..." onkeyup="searchGadgets()">
@@ -84,105 +66,41 @@
 <div id="comingSoonMsg">📱 Mobile Comparison - Coming Soon!</div>
 
 <div id="sectionsWrapper">
-    
     <h2 class="section-title">🌟 New Arrivals</h2>
     <div class="container">
         <div class="card tech">
             <button class="wish-btn" onclick="toggleWish(this)"><i class="fa fa-heart"></i></button>
             <img src="https://m.media-amazon.com/images/I/61ffOITjI-L._AC_SX569_.jpg" alt="Smart Health Ring">
             <h3>Smart Health & Fitness Ring</h3>
-            <p class="review-text">"Future of tracking!"</p>
-            <div class="details-box">
-                <ul>
-                    <li><b>Health:</b> Heart Rate & Oxygen monitoring.</li>
-                    <li><b>Sleep:</b> Tracks cycles & quality.</li>
-                    <li><b>Build:</b> IP68 Waterproof design.</li>
-                </ul>
-            </div>
             <div class="stars">★★★★★</div>
             <a href="https://www.amazon.com/dp/B0GHTYJ24L?tag=mobilecompa09-20" target="_blank" class="btn">View on Amazon</a>
             <a href="#" onclick="shareOnWhatsApp('Smart Health Ring', 'https://www.amazon.com/dp/B0GHTYJ24L')" class="share-wa"><i class="fa fa-whatsapp"></i></a>
         </div>
     </div>
-
-    <h2 class="section-title">🔥 Best Sellers</h2>
-    <div class="container">
-        <div class="card tech">
-            <button class="wish-btn" onclick="toggleWish(this)"><i class="fa fa-heart"></i></button>
-            <img src="https://m.media-amazon.com/images/I/71eZP0KRDkL._AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Magnetic Tool">
-            <h3>Magnetic Pickup Tool</h3>
-            <p class="review-text">"Pro repair partner!"</p>
-            <div class="details-box">
-                <ul>
-                    <li><b>Visibility:</b> Powerful LED lights.</li>
-                    <li><b>Strength:</b> Strong magnet for tools.</li>
-                    <li><b>Flexible:</b> Telescoping neck.</li>
-                </ul>
-            </div>
-            <div class="stars">★★★★★</div>
-            <a href="https://www.amazon.com/dp/B0D531KWFV" target="_blank" class="btn">View on Amazon</a>
-            <a href="#" onclick="shareOnWhatsApp('Magnetic Pickup Tool', 'https://www.amazon.com/dp/B0D531KWFV')" class="share-wa"><i class="fa fa-whatsapp"></i></a>
-        </div>
-    </div>
-
-    <h2 class="section-title">🎓 Featured Tech</h2>
-    <div class="container">
-        <div class="card tech">
-            <button class="wish-btn" onclick="toggleWish(this)"><i class="fa fa-heart"></i></button>
-            <img src="https://m.media-amazon.com/images/I/61dJHCFo1oL._AC_SL1500_.jpg" alt="SUPFINE iPhone 14 Pro Case">
-            <h3>SUPFINE Magnetic Case</h3>
-            <p class="review-text">"Military Grade Protection!"</p>
-            
-            <select class="model-select">
-                <option>iPhone 14 Pro</option>
-                <option>iPhone 14 Pro Max</option>
-            </select>
-
-            <div class="color-dots">
-                <span class="dot" style="background: black;"></span>
-                <span class="dot" style="background: #3c3c3c;"></span>
-            </div>
-
-            <div class="details-box">
-                <ul>
-                    <li><b>MagSafe:</b> Strong built-in magnets.</li>
-                    <li><b>Protection:</b> 10ft Military Drop Test.</li>
-                    <li><b>Finish:</b> Matte Translucent.</li>
-                </ul>
-            </div>
-            <div class="stars">★★★★★</div>
-            <a href="https://www.amazon.com/SUPFINE-Compatible-Translucent-Shockproof-Anti-Fingerprint/dp/B0CJDVRD41?tag=mobilecompa09-20" target="_blank" class="btn">View on Amazon</a>
-            <a href="#" onclick="shareOnWhatsApp('SUPFINE Magnetic Case', 'https://www.amazon.com/SUPFINE-Compatible-Translucent-Shockproof-Anti-Fingerprint/dp/B0CJDVRD41')" class="share-wa"><i class="fa fa-whatsapp"></i></a>
-        </div>
-    </div>
-
-    <div id="privacy-policy" class="privacy-section">
-        <h2 style="color: #e67e22; text-align: center;">Privacy Policy</h2>
-        <p>Welcome to <b>Smart Gear PK</b>. We do not collect personal data. We earn a small commission on qualifying Amazon purchases through affiliate links.</p>
-    </div>
-
 </div>
 
-<footer><p>&copy; 2026 Smart Gear PK | Usman Gadget Store. All Rights Reserved.</p></footer>
+<div id="privacy-policy" class="privacy-section">
+    <h2 style="color: #e67e22; text-align: center;">Privacy Policy</h2>
+    <p>Welcome to <b>Smart Gear PK</b>. We earn a small commission on qualifying Amazon purchases.</p>
+</div>
+
+<footer><p>&copy; 2026 Smart Gear PK | Usman Gadget Store</p></footer>
 
 <script>
     function toggleTheme() {
         document.body.classList.toggle('dark-mode');
         let icon = document.getElementById('themeIcon');
-        icon.classList.toggle('fa-moon-o');
-        icon.classList.toggle('fa-sun-o');
+        icon.classList.toggle('fa-moon-o'); icon.classList.toggle('fa-sun-o');
     }
     function toggleWish(btn) { btn.classList.toggle('active'); if(btn.classList.contains('active')) alert("Added to wishlist! ❤️"); }
-    
     function shareOnWhatsApp(name, link) {
-        let text = "Check out this awesome gadget at Smart Gear PK: " + name + " - " + link;
+        let text = "Check out: " + name + " - " + link;
         window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text));
     }
-
     function surpriseMe() {
         let cards = document.getElementsByClassName('card');
         let random = Math.floor(Math.random() * cards.length);
-        alert("🎲 Usman Suggests: " + cards[random].getElementsByTagName('h3')[0].innerText);
+        alert("Usman Suggests: " + cards[random].getElementsByTagName('h3')[0].innerText);
         cards[random].scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     function searchGadgets() {
@@ -194,15 +112,10 @@
         }
     }
     function filterBy(cat) {
-        let cards = document.getElementsByClassName('card');
         let sections = document.getElementById('sectionsWrapper');
         let soonMsg = document.getElementById('comingSoonMsg');
         if (cat === 'mobile-comp') { sections.classList.add('hidden'); soonMsg.style.display = "block"; }
-        else {
-            soonMsg.style.display = "none";
-            sections.classList.remove('hidden');
-            for (let card of cards) { card.style.display = (cat === 'all' || card.classList.contains(cat)) ? "" : "none"; }
-        }
+        else { soonMsg.style.display = "none"; sections.classList.remove('hidden'); }
     }
     window.onscroll = function() { document.getElementById("backToTop").style.display = (document.documentElement.scrollTop > 300) ? "block" : "none"; };
 </script>
