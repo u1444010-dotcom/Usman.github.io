@@ -6,46 +6,56 @@
     <title>Smart Gadget Store | Usman</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; color: #333; scroll-behavior: smooth; }
+        /* Dark Mode Variables */
+        :root {
+            --bg-color: #f4f4f9; --text-color: #333; --card-bg: white; --nav-bg: #2c3e50;
+        }
+        .dark-mode {
+            --bg-color: #1a1a2e; --text-color: #f4f4f9; --card-bg: #16213e; --nav-bg: #0f3460;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); scroll-behavior: smooth; transition: 0.3s; }
         
-        /* Header & Search */
-        header { background-color: #2c3e50; color: white; padding: 20px; text-align: center; }
+        /* Floating Controls */
+        .controls { position: fixed; top: 80px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
+        .control-btn { padding: 12px; border-radius: 50%; border: none; cursor: pointer; background: #e67e22; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+        header { background-color: var(--nav-bg); color: white; padding: 20px; text-align: center; }
         .search-bar { margin-top: 15px; display: flex; justify-content: center; }
         .search-bar input { padding: 10px; width: 250px; border-radius: 5px 0 0 5px; border: none; outline: none; }
         .search-bar button { padding: 10px 15px; background: #e67e22; border: none; color: white; border-radius: 0 5px 5px 0; cursor: pointer; }
 
-        /* Categories Bar */
-        .category-nav { background: #fff; padding: 15px; text-align: center; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; }
-        .category-nav a { margin: 0 15px; text-decoration: none; color: #2c3e50; font-weight: bold; font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
+        .category-nav { background: var(--card-bg); padding: 15px; text-align: center; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; }
+        .category-nav a { margin: 0 15px; text-decoration: none; color: var(--text-color); font-weight: bold; font-size: 0.9rem; cursor: pointer; transition: 0.3s; }
         .category-nav a:hover { color: #e67e22; }
 
-        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; color: white; padding: 60px 20px; text-align: center; }
-        
-        .about-section { background: white; padding: 40px 20px; text-align: center; border-bottom: 2px solid #eee; }
-        
-        /* Coming Soon Message */
-        #comingSoonMsg { display: none; padding: 50px; font-size: 1.5rem; font-weight: bold; color: #e67e22; }
+        .section-title { color: #e67e22; margin: 40px 0 10px; font-size: 1.8rem; text-align: center; }
+        #comingSoonMsg { display: none; padding: 50px; font-size: 1.5rem; font-weight: bold; color: #e67e22; text-align: center; }
 
         .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
-        .card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 15px; width: 300px; overflow: hidden; transition: 0.3s; text-align: center; padding-bottom: 20px; }
-        .card:hover { transform: translateY(-5px); }
+        .card { background: var(--card-bg); border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 15px; width: 300px; overflow: hidden; transition: 0.3s; text-align: center; padding-bottom: 20px; position: relative; }
+        .card:hover { transform: translateY(-10px); }
         .card img { width: 100%; height: 200px; object-fit: cover; }
         
+        /* Wishlist Heart Icon */
+        .wish-btn { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.8); border: none; border-radius: 50%; padding: 8px; cursor: pointer; color: #ccc; transition: 0.3s; }
+        .wish-btn.active { color: #e74c3c; }
+
+        .review-text { font-style: italic; font-size: 0.85rem; color: #e67e22; padding: 0 15px; margin: 5px 0; }
         .stars { color: #f1c40f; font-size: 1.2rem; margin: 10px 0; }
         .btn { display: inline-block; background-color: #e67e22; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; }
 
-        /* Social Share */
-        .share-container { margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px; }
-        .share-container a { text-decoration: none; margin: 0 10px; font-size: 1.1rem; }
-        .share-whatsapp { color: #25D366; }
-
         #backToTop { position: fixed; bottom: 30px; right: 30px; background-color: #2c3e50; color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: none; z-index: 1000; }
-        
         .hidden { display: none !important; }
         footer { text-align: center; padding: 20px; background: #2c3e50; color: white; }
     </style>
 </head>
 <body>
+
+<div class="controls">
+    <button class="control-btn" onclick="toggleTheme()" title="Dark/Light Mode"><i class="fa fa-moon-o" id="themeIcon"></i></button>
+    <button class="control-btn" onclick="surpriseMe()" title="Surprise Me!"><i class="fa fa-gift"></i></button>
+</div>
 
 <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="backToTop">↑</button>
 
@@ -66,103 +76,136 @@
 
 <div id="comingSoonMsg">📱 Mobile Comparison - Coming Soon!</div>
 
-<div class="container" id="gadgetContainer">
-    <div class="card tech">
-        <img src="https://m.media-amazon.com/images/I/71R67A888vL._AC_SL1500_.jpg" alt="Magnetic Tool">
-        <h3>Magnetic Pickup Tool</h3>
-        <p>LED lights help retrieve fallen items.</p>
-        <div class="stars">★★★★★</div>
-        <a href="https://www.amazon.com/dp/B0D531KWFV" class="btn">View on Amazon</a>
+<div id="sectionsWrapper">
+    
+    <h2 class="section-title">🔥 Best Sellers</h2>
+    <div class="container">
+        <div class="card home">
+            <button class="wish-btn" onclick="toggleWish(this)"><i class="fa fa-heart"></i></button>
+            <img src="https://m.media-amazon.com/images/I/719-XpY33vL._AC_SL1500_.jpg" alt="Moon Lamp">
+            <h3>Levitating Moon Lamp</h3>
+            <p class="review-text">"User says: Magical vibes in the room!"</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://a.co/d/03jPv5yt" class="btn">View on Amazon</a>
+        </div>
+
+        <div class="card tech">
+            <button class="wish-btn" onclick="toggleWish(this)"><i class="fa fa-heart"></i></button>
+            <img src="https://m.media-amazon.com/images/I/71R67A888vL._AC_SL1500_.jpg" alt="Magnetic Tool">
+            <h3>Magnetic Pickup Tool</h3>
+            <p class="review-text">"Top rated for DIY & repair work."</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://www.amazon.com/dp/B0D531KWFV" class="btn">View on Amazon</a>
+        </div>
     </div>
 
-    <div class="card home">
-        <img src="https://m.media-amazon.com/images/I/719-XpY33vL._AC_SL1500_.jpg" alt="Moon Lamp">
-        <h3>Levitating Moon Lamp</h3>
-        <p>A magical floating moon for your room.</p>
-        <div class="stars">★★★★☆</div>
-        <a href="https://a.co/d/03jPv5yt" class="btn">View on Amazon</a>
+    <h2 class="section-title">🎓 Student Tech Must-Haves</h2>
+    <div class="container">
+        <div class="card tech">
+            <button class="wish-btn" onclick="toggleWish(this)"><i class="fa fa-heart"></i></button>
+            <img src="https://m.media-amazon.com/images/I/71p0WfL-YPL._AC_SL1500_.jpg" alt="Fidget Pen">
+            <h3>Magnetic Fidget Pen</h3>
+            <p class="review-text">"Best for stress relief during study."</p>
+            <div class="stars">★★★★☆</div>
+            <a href="https://www.amazon.com/dp/B0BNL497T6" class="btn">View on Amazon</a>
+        </div>
+
+        <div class="card tech">
+            <button class="wish-btn" onclick="toggleWish(this)"><i class="fa fa-heart"></i></button>
+            <img src="https://i.ibb.co/DqLcR3k/image.jpg" alt="Mobile Case">
+            <h3>Luxury Mobile Case</h3>
+            <p class="review-text">"Premium quality protective feel."</p>
+            <div class="stars">★★★★★</div>
+            <a href="https://www.amazon.com/dp/B0D531KWFV" class="btn">View on Amazon</a>
+        </div>
     </div>
 
-    <div class="card tech">
-        <img src="https://m.media-amazon.com/images/I/71p0WfL-YPL._AC_SL1500_.jpg" alt="Fidget Pen">
-        <h3>Magnetic Fidget Pen</h3>
-        <p>Creative pen made of magnets for relief.</p>
-        <div class="stars">★★★★☆</div>
-        <a href="https://www.amazon.com/dp/B0BNL497T6" class="btn">View on Amazon</a>
-    </div>
-
-    <div class="card tech">
-        <img src="https://i.ibb.co/DqLcR3k/image.jpg" alt="Mobile Case">
-        <h3>Luxury Mobile Case</h3>
-        <p>High-quality protective case for smartphone.</p>
-        <div class="stars">★★★★★</div>
-        <a href="https://www.amazon.com/dp/B0D531KWFV" class="btn">View on Amazon</a>
-    </div>
 </div>
-
 <footer>
     <p>&copy; 2026 Usman Gadget Store. All Rights Reserved.</p>
 </footer>
 
 <script>
-    // 1. Search Engine Function
-    function searchGadgets() {
-        let input = document.getElementById('gadgetSearch').value.toLowerCase();
-        let cards = document.getElementsByClassName('card');
-        let container = document.getElementById('gadgetContainer');
-        let soonMsg = document.getElementById('comingSoonMsg');
-
-        // Reset display
-        soonMsg.style.display = "none";
-        container.classList.remove('hidden');
-
-        for (let i = 0; i < cards.length; i++) {
-            let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
-            if (title.includes(input)) {
-                cards[i].style.display = "";
-            } else {
-                cards[i].style.display = "none";
-            }
+    // 1. Dark Mode Logic
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        let icon = document.getElementById('themeIcon');
+        if(document.body.classList.contains('dark-mode')) {
+            icon.classList.replace('fa-moon-o', 'fa-sun-o');
+        } else {
+            icon.classList.replace('fa-sun-o', 'fa-moon-o');
         }
     }
 
-    // 2. Category Filter & Coming Soon Function
+    // 2. Wishlist Logic
+    function toggleWish(btn) {
+        btn.classList.toggle('active');
+        if(btn.classList.contains('active')) {
+            alert("Added to your wishlist! ❤️");
+        }
+    }
+
+    // 3. Surprise Me (Random Picker)
+    function surpriseMe() {
+        let cards = document.getElementsByClassName('card');
+        let random = Math.floor(Math.random() * cards.length);
+        let title = cards[random].getElementsByTagName('h3')[0].innerText;
+        
+        alert("🎲 Usman Suggests: " + title);
+        cards[random].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        cards[random].style.boxShadow = "0 0 20px #e67e22";
+        setTimeout(() => { cards[random].style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)"; }, 2000);
+    }
+
+    // 4. Search Logic
+    function searchGadgets() {
+        let input = document.getElementById('gadgetSearch').value.toLowerCase();
+        let cards = document.getElementsByClassName('card');
+        let titles = document.getElementsByClassName('section-title');
+
+        // Hide titles during search for better look
+        for(let t of titles) { t.style.display = input === "" ? "" : "none"; }
+
+        for (let card of cards) {
+            let title = card.getElementsByTagName('h3')[0].innerText.toLowerCase();
+            card.style.display = title.includes(input) ? "" : "none";
+        }
+    }
+
+    // 5. Category Filter
     function filterBy(cat) {
         let cards = document.getElementsByClassName('card');
-        let container = document.getElementById('gadgetContainer');
         let soonMsg = document.getElementById('comingSoonMsg');
-        
-        // Clear search box when clicking categories
+        let sections = document.getElementById('sectionsWrapper');
+        let titles = document.getElementsByClassName('section-title');
+
         document.getElementById('gadgetSearch').value = "";
 
         if (cat === 'mobile-comp') {
-            container.classList.add('hidden');
+            sections.classList.add('hidden');
             soonMsg.style.display = "block";
         } else {
-            soonMsg.style.display = "flex";
-            container.classList.remove('hidden');
             soonMsg.style.display = "none";
+            sections.classList.remove('hidden');
+            for(let t of titles) { t.style.display = "none"; } // Hide titles in filter mode
 
-            for (let i = 0; i < cards.length; i++) {
+            for (let card of cards) {
                 if (cat === 'all') {
-                    cards[i].style.display = "";
-                } else if (cards[i].classList.contains(cat)) {
-                    cards[i].style.display = "";
+                    card.style.display = "";
+                    for(let t of titles) { t.style.display = ""; } // Show titles back for 'all'
+                } else if (card.classList.contains(cat)) {
+                    card.style.display = "";
                 } else {
-                    cards[i].style.display = "none";
+                    card.style.display = "none";
                 }
             }
         }
     }
 
-    // 3. Back to Top Logic
+    // Back to Top
     window.onscroll = function() {
         var btn = document.getElementById("backToTop");
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-            btn.style.display = "block";
-        } else {
-            btn.style.display = "none";
-        }
+        btn.style.display = (document.documentElement.scrollTop > 300) ? "block" : "none";
     };
 </script>
 
