@@ -5,10 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Gadget Store</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background: #f4f4f4; margin: 0; padding: 20px; }
-        h1 { color: #232f3e; margin-bottom: 5px; }
-        .sub-text { color: #555; margin-bottom: 20px; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            margin: 0; 
+            padding: 20px;
+            /* Tech Background Image */
+            background: linear-gradient(rgba(244, 244, 244, 0.8), rgba(244, 244, 244, 0.8)), 
+                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        h1 { color: #232f3e; margin-bottom: 5px; text-shadow: 1px 1px 2px white; }
+        .sub-text { color: #333; margin-bottom: 20px; font-weight: 500; }
         
+        /* Search Bar Styling */
         .search-container { margin: 20px auto 40px auto; max-width: 500px; }
         #searchInput { 
             width: 100%; 
@@ -17,18 +30,19 @@
             border: 2px solid #232f3e; 
             border-radius: 30px; 
             outline: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .category-header { 
             background: #232f3e; 
             color: white; 
-            padding: 12px 25px; 
+            padding: 12px 30px; 
             display: inline-block; 
             border-radius: 30px; 
             margin: 40px 0 20px 0;
             font-size: 1.4rem;
             font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .product-container { 
@@ -40,23 +54,37 @@
         }
 
         .product { 
-            background: white; 
+            background: rgba(255, 255, 255, 0.95); 
             width: 280px; 
             margin: 15px; 
             padding: 20px; 
-            border-radius: 15px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-            transition: transform 0.3s;
+            border-radius: 20px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            backdrop-filter: blur(5px); 
         }
 
-        .product:hover { transform: translateY(-5px); }
+        .product:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
         .product-link { text-decoration: none; color: inherit; display: block; }
-        img { width: 100%; border-radius: 10px; height: 200px; object-fit: contain; background: #fff; margin-bottom: 10px; }
+        
+        img { 
+            width: 100%; 
+            border-radius: 12px; 
+            height: 200px; 
+            object-fit: contain; 
+            background: #fff; 
+            margin-bottom: 10px; 
+        }
+
         h3 { color: #111; font-size: 1.1rem; margin: 10px 0; height: 50px; overflow: hidden; }
-        .desc { color: #555; font-size: 0.85rem; line-height: 1.4; height: 60px; overflow: hidden; margin-bottom: 15px; }
+        .desc { color: #444; font-size: 0.85rem; line-height: 1.4; height: 60px; overflow: hidden; margin-bottom: 15px; }
         
         .btn { 
             display: block; 
@@ -67,8 +95,9 @@
             font-weight: bold; 
             border-radius: 25px; 
             border: 1px solid #a88734; 
+            transition: 0.2s;
         }
-        .btn:hover { background: #e68a00; }
+        .btn:hover { background: #e68a00; transform: scale(1.05); }
 
         .hidden { display: none !important; }
     </style>
@@ -82,7 +111,7 @@
         <input type="text" id="searchInput" placeholder="Search for gadgets or accessories..." onkeyup="searchProducts()">
     </div>
 
-    <div class="category-header" id="cat1">🚀 Cool Gadgets</div>
+    <div class="category-header">🚀 Cool Gadgets</div>
     <div class="product-container">
         
         <div class="product">
@@ -105,7 +134,7 @@
 
     </div>
 
-    <div class="category-header" id="cat2">📱 Mobile Accessories</div>
+    <div class="category-header">📱 Mobile Accessories</div>
     <div class="product-container">
         
         <div class="product">
