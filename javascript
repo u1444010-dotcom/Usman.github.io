@@ -74,7 +74,7 @@
     </div>
 
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search gadgets..." onkeyup="searchProducts()">
+        <input type="text" id="searchInput" placeholder="Search gadgets (e.g. Tool, Case)..." onkeyup="searchProducts()">
     </div>
 
     <section class="about-section">
@@ -96,15 +96,25 @@
                 <i class="fa fa-copy" onclick="copyLink('https://www.amazon.com/dp/B0D531KWFV')"></i>
             </div>
         </div>
-        
+
+        <div class="product">
+            <img src="https://m.media-amazon.com/images/I/71Xm8p3XkEL._AC_SL1500_.jpg" alt="Luxury Case">
+            <h3>Luxury Mobile Case</h3>
+            <div class="stars">★★★★★</div>
+            <p>High-quality protective case for your smartphone.</p>
+            <a href="https://www.amazon.com/s?k=luxury+mobile+case" target="_blank" class="btn" onclick="showAlert('🚀 Opening Amazon...')">View on Amazon</a>
+            <div class="share-box">
+                <i class="fa fa-whatsapp" onclick="shareToWhatsApp('https://www.amazon.com/s?k=luxury+mobile+case')"></i>
+                <i class="fa fa-copy" onclick="copyLink('https://www.amazon.com/s?k=luxury+mobile+case')"></i>
+            </div>
         </div>
+    </div>
 
     <footer>
         <p>&copy; 2026 Smart Store | Usman</p>
     </footer>
 
     <script>
-        // 1. Theme Toggle
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             let btn = document.getElementById('theme-toggle');
@@ -112,19 +122,16 @@
             localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
 
-        // 2. Copy Link Function
         function copyLink(link) {
             navigator.clipboard.writeText(link).then(() => {
                 showAlert("📋 Link Copied to Clipboard!");
             });
         }
 
-        // 3. WhatsApp Share
         function shareToWhatsApp(link) {
             window.open(`https://api.whatsapp.com/send?text=Check out this gadget: ${link}`, '_blank');
         }
 
-        // 4. Custom Alert
         function showAlert(msg) {
             let alertBox = document.getElementById('custom-alert');
             alertBox.innerText = msg;
@@ -132,24 +139,35 @@
             setTimeout(() => { alertBox.style.display = 'none'; }, 2000);
         }
 
-        // 5. Search
+        // Updated Search Logic
         function searchProducts() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let products = document.getElementsByClassName('product');
+            
             for (let p of products) {
-                let text = p.innerText.toLowerCase();
-                p.classList.toggle('hidden', !text.includes(input));
+                // Title aur Description dono ko check karega
+                let title = p.querySelector('h3').innerText.toLowerCase();
+                let desc = p.querySelector('p').innerText.toLowerCase();
+                
+                if (title.includes(input) || desc.includes(input)) {
+                    p.style.display = "block"; // Show
+                    p.classList.remove('hidden');
+                } else {
+                    p.style.display = "none"; // Hide
+                    p.classList.add('hidden');
+                }
             }
         }
 
-        // 6. Scroll Listener
         window.onscroll = () => {
             document.getElementById('backToTop').style.display = 
                 (window.scrollY > 400) ? 'block' : 'none';
         };
 
-        // Load Theme
-        if(localStorage.getItem('theme') === 'dark') toggleTheme();
+        if(localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-toggle').innerText = "☀️ Light Mode";
+        }
     </script>
 </body>
 </html>
