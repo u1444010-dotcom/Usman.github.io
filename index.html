@@ -3,177 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Gadget Store</title>
+    <title>Smart Gadget Store | Usman</title>
     <style>
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            text-align: center; 
-            margin: 0; 
-            padding: 20px;
-            /* Tech Background Image */
-            background: linear-gradient(rgba(244, 244, 244, 0.8), rgba(244, 244, 244, 0.8)), 
-                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        h1 { color: #232f3e; margin-bottom: 5px; text-shadow: 1px 1px 2px white; }
-        .sub-text { color: #333; margin-bottom: 20px; font-weight: 500; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; color: #333; }
+        header { background-color: #2c3e50; color: white; padding: 20px; text-align: center; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; color: white; padding: 60px 20px; text-align: center; }
         
-        /* Search Bar Styling */
-        .search-container { margin: 20px auto 40px auto; max-width: 500px; }
-        #searchInput { 
-            width: 100%; 
-            padding: 15px 20px; 
-            font-size: 1rem; 
-            border: 2px solid #232f3e; 
-            border-radius: 30px; 
-            outline: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
+        /* About Me Section Styling */
+        .about-section { background: white; padding: 40px 20px; text-align: center; border-bottom: 2px solid #eee; }
+        .about-section h2 { color: #2c3e50; }
+        .about-section p { max-width: 700px; margin: 0 auto; line-height: 1.6; font-size: 1.1rem; }
 
-        .category-header { 
-            background: #232f3e; 
-            color: white; 
-            padding: 12px 30px; 
-            display: inline-block; 
-            border-radius: 30px; 
-            margin: 40px 0 20px 0;
-            font-size: 1.4rem;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .product-container { 
-            display: flex; 
-            justify-content: center; 
-            flex-wrap: wrap; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-        }
-
-        .product { 
-            background: rgba(255, 255, 255, 0.95); 
-            width: 280px; 
-            margin: 15px; 
-            padding: 20px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            backdrop-filter: blur(5px); 
-        }
-
-        .product:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
-
-        .product-link { text-decoration: none; color: inherit; display: block; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
+        .card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 15px; width: 300px; overflow: hidden; transition: 0.3s; text-align: center; padding-bottom: 20px; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card h3 { padding: 10px; font-size: 1.2rem; }
+        .card p { padding: 0 15px; font-size: 0.9rem; color: #666; height: 60px; overflow: hidden; }
         
-        img { 
-            width: 100%; 
-            border-radius: 12px; 
-            height: 200px; 
-            object-fit: contain; 
-            background: #fff; 
-            margin-bottom: 10px; 
-        }
+        /* Star Ratings Styling */
+        .stars { color: #f1c40f; font-size: 1.2rem; margin: 10px 0; }
+        .rating-text { font-size: 0.8rem; color: #888; margin-left: 5px; }
 
-        h3 { color: #111; font-size: 1.1rem; margin: 10px 0; height: 50px; overflow: hidden; }
-        .desc { color: #444; font-size: 0.85rem; line-height: 1.4; height: 60px; overflow: hidden; margin-bottom: 15px; }
-        
-        .btn { 
-            display: block; 
-            background: #ff9900; 
-            color: black; 
-            padding: 12px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            border-radius: 25px; 
-            border: 1px solid #a88734; 
-            transition: 0.2s;
-        }
-        .btn:hover { background: #e68a00; transform: scale(1.05); }
-
-        .hidden { display: none !important; }
+        .btn { display: inline-block; background-color: #e67e22; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; }
+        .btn:hover { background-color: #d35400; }
+        footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 20px; }
     </style>
 </head>
 <body>
 
+<header>
+    <h1>Smart Gadget Store</h1>
+</header>
+
+<div class="hero">
     <h1>Welcome to My Smart Store</h1>
-    <p class="sub-text">Handpicked Premium Gadgets & Accessories</p>
+    <p>Handpicked Premium Gadgets & Accessories</p>
+</div>
 
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search for gadgets or accessories..." onkeyup="searchProducts()">
+<section class="about-section">
+    <h2>About Me</h2>
+    <p>
+        Assalam-o-Alaikum! Main <strong>Usman</strong> hoon. Main gadgets aur technology ka shaukeen hoon aur is website par main wahi cheezein share karta hoon jo waqayi kamaal ki hain. Mera maqsad aapke liye best Amazon gadgets dhundhna hai!
+    </p>
+</section>
+
+<div class="container">
+    <div class="card">
+        <img src="https://m.media-amazon.com/images/I/71R67A888vL._AC_SL1500_.jpg" alt="Magnetic Tool">
+        <h3>Magnetic Pickup Tool</h3>
+        <p>LED lights help retrieve fallen items from hard-to-reach places.</p>
+        <div class="stars">★★★★★ <span class="rating-text">(4.9/5)</span></div>
+        <a href="https://www.amazon.com/dp/B0D531KWFV?tag=mobilecompa09-20" class="btn">View on Amazon</a>
     </div>
 
-    <div class="category-header">🚀 Cool Gadgets</div>
-    <div class="product-container">
-        
-        <div class="product">
-            <a href="https://www.amazon.com/dp/B0D531KWFV?tag=mobilecompa09-20" target="_blank" class="product-link">
-                <img src="https://m.media-amazon.com/images/I/71R67A888vL._AC_SL1500_.jpg" alt="Magnetic Pickup Tool">
-                <h3>Telescoping Magnetic Pickup Tool</h3>
-            </a>
-            <p class="desc">LED lights help retrieve fallen items from hard-to-reach places. Perfect for DIY lovers!</p>
-            <a href="https://www.amazon.com/dp/B0D531KWFV?tag=mobilecompa09-20" target="_blank" class="btn">View on Amazon</a>
-        </div>
-
-        <div class="product">
-            <a href="https://a.co/d/03jPv5yt" target="_blank" class="product-link">
-                <img src="https://m.media-amazon.com/images/I/719-XpY33vL._AC_SL1500_.jpg" alt="Levitating Moon Lamp">
-                <h3>Floating Levitating Moon Lamp</h3>
-            </a>
-            <p class="desc">A magical floating moon! Uses magnetic levitation to spin and glow in your room.</p>
-            <a href="https://a.co/d/03jPv5yt" target="_blank" class="btn">View on Amazon</a>
-        </div>
-
+    <div class="card">
+        <img src="https://m.media-amazon.com/images/I/719-XpY33vL._AC_SL1500_.jpg" alt="Moon Lamp">
+        <h3>Levitating Moon Lamp</h3>
+        <p>A magical floating moon that spins and glows in your room.</p>
+        <div class="stars">★★★★☆ <span class="rating-text">(4.5/5)</span></div>
+        <a href="https://a.co/d/03jPv5yt" class="btn">View on Amazon</a>
     </div>
 
-    <div class="category-header">📱 Mobile Accessories</div>
-    <div class="product-container">
-        
-        <div class="product">
-            <a href="https://www.amazon.com/dp/B0BNL497T6?tag=mobilecompa09-20" target="_blank" class="product-link">
-                <img src="https://m.media-amazon.com/images/I/71p0WfL-YPL._AC_SL1500_.jpg" alt="Magnetic Fidget Pen">
-                <h3>Multifunctional Magnetic Fidget Pen</h3>
-            </a>
-            <p class="desc">Creative pen made of magnets. Great for stress relief and office desk entertainment.</p>
-            <a href="https://www.amazon.com/dp/B0BNL497T6?tag=mobilecompa09-20" target="_blank" class="btn">View on Amazon</a>
-        </div>
-
-        <div class="product">
-            <a href="https://www.amazon.com/dp/B0D531KWFV?th=1&linkCode=ll2&tag=mobilecompa09-20&linkId=8d65e019e660b6e7e10bc6ee57c016ec&language=en_US&ref_=as_li_ss_tl" target="_blank" class="product-link">
-                <img src="https://i.ibb.co/DqLcR3k/image.jpg" alt="Mobile Case">
-                <h3>Luxury Protective Mobile Case</h3>
-            </a>
-            <p class="desc">High-quality protective case for your smartphone. Stylish, durable, and provides full protection.</p>
-            <a href="https://www.amazon.com/dp/B0D531KWFV?th=1&linkCode=ll2&tag=mobilecompa09-20&linkId=8d65e019e660b6e7e10bc6ee57c016ec&language=en_US&ref_=as_li_ss_tl" target="_blank" class="btn">View on Amazon</a>
-        </div>
-
+    <div class="card">
+        <img src="https://m.media-amazon.com/images/I/71p0WfL-YPL._AC_SL1500_.jpg" alt="Fidget Pen">
+        <h3>Magnetic Fidget Pen</h3>
+        <p>Creative pen made of magnets. Great for stress relief.</p>
+        <div class="stars">★★★★☆ <span class="rating-text">(4.2/5)</span></div>
+        <a href="https://www.amazon.com/dp/B0BNL497T6?tag=mobilecompa09-20" class="btn">View on Amazon</a>
     </div>
 
-    <script>
-        function searchProducts() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let products = document.getElementsByClassName('product');
-            
-            for (let i = 0; i < products.length; i++) {
-                let title = products[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
-                let desc = products[i].getElementsByClassName('desc')[0].innerText.toLowerCase();
-                
-                if (title.includes(input) || desc.includes(input)) {
-                    products[i].classList.remove('hidden');
-                } else {
-                    products[i].classList.add('hidden');
-                }
-            }
-        }
-    </script>
+    <div class="card">
+        <img src="https://i.ibb.co/DqLcR3k/image.jpg" alt="Mobile Case">
+        <h3>Luxury Mobile Case</h3>
+        <p>High-quality protective case for your smartphone.</p>
+        <div class="stars">★★★★★ <span class="rating-text">(5.0/5)</span></div>
+        <a href="https://www.amazon.com/dp/B0D531KWFV" class="btn">View on Amazon</a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Usman Gadget Store. All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>
