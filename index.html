@@ -30,7 +30,13 @@
         .details-box { text-align: left; padding: 0 15px; font-size: 0.85rem; color: var(--text-color); }
         .details-box ul { padding-left: 18px; margin: 5px 0; }
         .stars { color: #f1c40f; font-size: 1.2rem; margin: 10px 0; }
-        .btn { display: inline-block; background-color: #e67e22; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; }
+        .btn { display: inline-block; background-color: #e67e22; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background-color: #d35400; }
+        
+        /* WhatsApp Share Button Style */
+        .share-wa { display: inline-block; background-color: #25D366; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; margin-top: 10px; margin-left: 5px; font-weight: bold; font-size: 0.9rem; }
+        .share-wa:hover { background-color: #128C7E; }
+
         .privacy-section { padding: 40px 20px; max-width: 900px; margin: 40px auto; line-height: 1.6; font-size: 0.9rem; color: var(--text-color); border-top: 2px solid #e67e22; background: var(--card-bg); border-radius: 10px; }
         #backToTop { position: fixed; bottom: 30px; right: 30px; background-color: #2c3e50; color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: none; z-index: 1000; }
         .hidden { display: none !important; }
@@ -80,11 +86,11 @@
                     <li><b>Health:</b> Heart Rate & Oxygen monitoring.</li>
                     <li><b>Sleep:</b> Tracks cycles & quality.</li>
                     <li><b>Build:</b> IP68 Waterproof design.</li>
-                    <li><b>App:</b> Compatible with iOS & Android.</li>
                 </ul>
             </div>
             <div class="stars">★★★★★</div>
             <a href="https://www.amazon.com/dp/B0GHTYJ24L?tag=mobilecompa09-20" target="_blank" class="btn">View on Amazon</a>
+            <a href="#" onclick="shareOnWhatsApp('Smart Health Ring', 'https://www.amazon.com/dp/B0GHTYJ24L')" class="share-wa"><i class="fa fa-whatsapp"></i></a>
         </div>
     </div>
 
@@ -100,11 +106,11 @@
                     <li><b>Visibility:</b> Powerful LED lights.</li>
                     <li><b>Strength:</b> Strong magnet for tools.</li>
                     <li><b>Flexible:</b> Telescoping neck.</li>
-                    <li><b>Best For:</b> Mechanics & DIY.</li>
                 </ul>
             </div>
             <div class="stars">★★★★★</div>
             <a href="https://www.amazon.com/dp/B0D531KWFV" target="_blank" class="btn">View on Amazon</a>
+            <a href="#" onclick="shareOnWhatsApp('Magnetic Pickup Tool', 'https://www.amazon.com/dp/B0D531KWFV')" class="share-wa"><i class="fa fa-whatsapp"></i></a>
         </div>
     </div>
 
@@ -117,34 +123,31 @@
             <p class="review-text">"Military Grade Protection!"</p>
             
             <select class="model-select">
-                <option>iPhone 14 Pro (Current)</option>
-                <option>iPhone 14 Plus</option>
+                <option>iPhone 14 Pro</option>
                 <option>iPhone 14 Pro Max</option>
             </select>
 
             <div class="color-dots">
                 <span class="dot" style="background: black;"></span>
                 <span class="dot" style="background: #3c3c3c;"></span>
-                <span class="dot" style="background: #e0e0e0;"></span>
             </div>
 
             <div class="details-box">
                 <ul>
                     <li><b>MagSafe:</b> Strong built-in magnets.</li>
                     <li><b>Protection:</b> 10ft Military Drop Test.</li>
-                    <li><b>Finish:</b> Matte Translucent (Anti-fingerprint).</li>
-                    <li><b>Feel:</b> Soft TPU frame with excellent grip.</li>
+                    <li><b>Finish:</b> Matte Translucent.</li>
                 </ul>
             </div>
             <div class="stars">★★★★★</div>
             <a href="https://www.amazon.com/SUPFINE-Compatible-Translucent-Shockproof-Anti-Fingerprint/dp/B0CJDVRD41?tag=mobilecompa09-20" target="_blank" class="btn">View on Amazon</a>
+            <a href="#" onclick="shareOnWhatsApp('SUPFINE Magnetic Case', 'https://www.amazon.com/SUPFINE-Compatible-Translucent-Shockproof-Anti-Fingerprint/dp/B0CJDVRD41')" class="share-wa"><i class="fa fa-whatsapp"></i></a>
         </div>
     </div>
 
     <div id="privacy-policy" class="privacy-section">
         <h2 style="color: #e67e22; text-align: center;">Privacy Policy</h2>
-        <p>Welcome to <b>Usman Gadget Store</b>. Your privacy is important to us. We do not collect personal data, but we use cookies and third-party tools to improve your experience.</p>
-        <p><b>Affiliate Disclosure:</b> We earn a small commission on qualifying Amazon purchases through our links.</p>
+        <p>Welcome to <b>Usman Gadget Store</b>. We do not collect personal data. We earn a small commission on qualifying Amazon purchases.</p>
     </div>
 
 </div>
@@ -159,6 +162,13 @@
         icon.classList.toggle('fa-sun-o');
     }
     function toggleWish(btn) { btn.classList.toggle('active'); if(btn.classList.contains('active')) alert("Added to wishlist! ❤️"); }
+    
+    // WhatsApp Share Function
+    function shareOnWhatsApp(name, link) {
+        let text = "Check out this awesome gadget at Usman Store: " + name + " - " + link;
+        window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text));
+    }
+
     function surpriseMe() {
         let cards = document.getElementsByClassName('card');
         let random = Math.floor(Math.random() * cards.length);
