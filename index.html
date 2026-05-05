@@ -1,154 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-    /* Main Card Styling */
-    .product-container {
-        max-width: 380px;
-        margin: 20px auto;
-        border: 1px solid #ddd;
-        border-radius: 12px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        background: #fff;
-        transition: transform 0.3s ease;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Gear PK | Premium Gadgets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #fbbf24;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --amazon-gold: #FFD814;
+        }
 
-    .product-container:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* Image Section */
-    .image-box {
-        padding: 20px;
-        background: #f9f9f9;
-        text-align: center;
-        position: relative;
-    }
+        /* Header & Branding */
+        header {
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+        }
 
-    .image-box img {
-        max-width: 100%;
-        height: 250px;
-        object-fit: contain;
-    }
+        .brand-logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
 
-    .badge {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: #ff4747;
-        color: white;
-        padding: 5px 12px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: bold;
-    }
+        /* Search Engine */
+        .search-container {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
 
-    /* Content Section */
-    .content-box {
-        padding: 20px;
-    }
+        .search-container input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            background: var(--card-bg);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
 
-    .brand-name {
-        font-size: 13px;
-        color: #007185;
-        text-transform: uppercase;
-        font-weight: bold;
-        letter-spacing: 1px;
-    }
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
 
-    .product-name {
-        font-size: 18px;
-        font-weight: 600;
-        color: #111;
-        margin: 8px 0;
-        line-height: 1.4;
-    }
+        .tab {
+            padding: 8px 20px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
 
-    .features-list {
-        margin: 15px 0;
-        padding: 0;
-        list-style: none;
-    }
+        .tab:hover, .tab.active {
+            background: var(--accent-color);
+            color: #000;
+        }
 
-    .features-list li {
-        font-size: 13px;
-        color: #555;
-        margin-bottom: 5px;
-        display: flex;
-        align-items: center;
-    }
+        /* Product Card */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
 
-    .features-list li::before {
-        content: "✓";
-        color: #2e7d32;
-        font-weight: bold;
-        margin-right: 8px;
-    }
+        .product-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+        }
 
-    /* Price & Button */
-    .price-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 20px;
-        border-top: 1px solid #eee;
-        padding-top: 15px;
-    }
+        .product-img {
+            width: 100%;
+            height: 300px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
 
-    .price-tag {
-        font-size: 24px;
-        font-weight: bold;
-        color: #B12704;
-    }
+        .product-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
 
-    .amazon-btn {
-        background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
-        border: 1px solid #a88734;
-        color: #111;
-        padding: 10px 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 600;
-        transition: 0.2s;
-    }
+        .product-info {
+            padding: 25px;
+        }
 
-    .amazon-btn:hover {
-        background: linear-gradient(to bottom, #f5d78e, #eeb933);
-        border-color: #846a29;
-    }
-</style>
+        .product-info h2 {
+            font-size: 20px;
+            margin: 0 0 10px;
+            line-height: 1.4;
+        }
+
+        .review-stars {
+            color: #fbbf24;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .features {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Buttons & Actions */
+        .action-btns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-amazon {
+            background: var(--amazon-gold);
+            color: #111;
+            grid-column: span 2;
+        }
+
+        .btn-wa {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-copy {
+            background: #6366f1;
+            color: white;
+        }
+
+        /* Footer & Privacy */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .privacy-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /* Toast notification */
+        #toast {
+            visibility: hidden;
+            min-width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+    </style>
 </head>
 <body>
 
-<div class="product-container">
-    <div class="image-box">
-        <span class="badge">Top Rated</span>
-        <img src="https://m.media-amazon.com/images/I/61iXWpX-B2L._AC_SL1500_.jpg" alt="Aoyool Smart Ring">
+<header>
+    <div class="brand-logo">Smart Gear PK</div>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search gadgets..." onkeyup="searchWork()">
     </div>
+</header>
 
-    <div class="content-box">
-        <span class="brand-name">Visit the Aoyool Store</span>
-        <h2 class="product-name">Smart Ring Health & Fitness Tracker (Gold, Size 8)</h2>
-        
-        <ul class="features-list">
-            <li>Heart Rate & SpO2 Monitoring</li>
-            <li>Sleep & Activity Tracking</li>
-            <li>IP68 Waterproof & 5 Days Battery</li>
-            <li>No Subscription Fees</li>
-        </ul>
+<div class="nav-tabs">
+    <div class="tab active" onclick="tabMsg('All Products Loading...')">All</div>
+    <div class="tab" onclick="tabMsg('Gadgets Filtered')">Gadgets</div>
+    <div class="tab" onclick="alert('Coming Soon!')">Mobile Comparison</div>
+</div>
 
-        <div class="price-row">
-            <span class="price-tag">Check Price</span>
-            <a href="https://www.amazon.com/Aoyool-Activity-Monitoring-Waterproof-Subscription/dp/B0G1CB4F1F?tag=mobilecompa09-20" target="_blank" class="amazon-btn">
-                View on Amazon
-            </a>
+<div class="main-content">
+    <div class="product-card" id="productCard">
+        <div class="product-img">
+            <img src="https://m.media-amazon.com/images/I/61iXWpX-B2L._AC_SL1500_.jpg" alt="Smart Ring">
+        </div>
+        <div class="product-info">
+            <h2>Aoyool Smart Health Ring</h2>
+            <div class="review-stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span style="color: #94a3b8; font-size: 12px;">(1,240 Reviews)</span>
+            </div>
+            <div class="features">
+                • Heart Rate & SpO2 Tracking<br>
+                • IP68 Waterproof Gold Finish<br>
+                • No Subscription Fee
+            </div>
+            
+            <div class="action-btns">
+                <a href="https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20" target="_blank" class="btn btn-amazon">
+                    <i class="fab fa-amazon"></i> BUY ON AMAZON
+                </a>
+                <a href="https://wa.me/YOUR_NUMBER" class="btn btn-wa">
+                    <i class="fab fa-whatsapp"></i> WHATSAPP
+                </a>
+                <div class="btn btn-copy" onclick="copyLink()">
+                    <i class="fas fa-copy"></i> COPY LINK
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<div id="toast">Link Copied to Clipboard!</div>
+
+<footer>
+    <p>&copy; 2026 Smart Gear PK. All Rights Reserved.</p>
+    <a href="#" class="privacy-link" onclick="alert('Privacy Policy: We do not store your data. We use affiliate links to earn commission.')">Privacy Policy & Terms</a>
+</footer>
+
+<script>
+    // Search Functionality
+    function searchWork() {
+        let input = document.getElementById('searchInput').value.toLowerCase();
+        let card = document.getElementById('productCard');
+        let title = document.querySelector('.product-info h2').innerText.toLowerCase();
+        
+        if (title.includes(input)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    }
+
+    // Tab Functionality
+    function tabMsg(msg) {
+        console.log(msg);
+        // Add filtering logic here if you have more products
+    }
+
+    // Copy Link Functionality
+    function copyLink() {
+        const url = "https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20";
+        navigator.clipboard.writeText(url);
+        
+        var x = document.getElementById("toast");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+</script>
 
 </body>
 </html>
