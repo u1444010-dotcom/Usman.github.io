@@ -7,237 +7,255 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Light Mode Colors */
-            --bg-gradient: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --text-color: #1f2937;
-            --accent-color: #fbbf24;
-            --header-bg: rgba(255, 255, 255, 0.8);
+            --bg-overlay: rgba(255, 255, 255, 0.85);
+            --wallpaper: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #1e293b;
+            --accent-color: #f59e0b;
+            --shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
         [data-theme="dark"] {
-            /* Dark Mode Colors */
-            --bg-gradient: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #020617);
-            --card-bg: rgba(30, 41, 59, 0.9);
+            --bg-overlay: rgba(15, 23, 42, 0.95);
+            --wallpaper: none;
+            --card-bg: #1e293b;
             --text-color: #f8fafc;
             --accent-color: #fbbf24;
-            --header-bg: rgba(15, 23, 42, 0.8);
+            --shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-gradient);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            color: var(--text-color);
-            transition: 0.5s;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             min-height: 100vh;
+            background-image: var(--wallpaper);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            transition: background 0.5s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
+            color: var(--text-color);
         }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-overlay);
+            z-index: -1;
+            transition: 0.5s;
         }
 
-        /* Theme Switcher Button */
+        /* Theme Switcher */
         .theme-switch {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
+            top: 20px; right: 20px;
+            z-index: 100;
             background: var(--accent-color);
+            color: #000;
             border: none;
-            padding: 10px 15px;
-            border-radius: 50px;
+            padding: 10px 18px;
+            border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: transform 0.2s;
         }
+
+        .theme-switch:active { transform: scale(0.95); }
 
         header {
             width: 100%;
-            padding: 40px 0;
             text-align: center;
-            background: var(--header-bg);
-            backdrop-filter: blur(10px);
-            margin-bottom: 30px;
+            padding: 40px 0 20px;
         }
 
-        .logo { font-size: 32px; font-weight: 800; color: var(--accent-color); margin-bottom: 15px; }
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            width: 90%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
 
         .search-box {
-            width: 80%;
-            max-width: 400px;
+            width: 100%;
             padding: 12px 20px;
-            border-radius: 25px;
-            border: 1px solid #ddd;
-            outline: none;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(5px);
-            color: var(--text-color);
-        }
-
-        /* Nav Tabs */
-        .nav-bar { display: flex; gap: 10px; margin-bottom: 30px; }
-        .nav-item {
-            padding: 8px 20px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 20px;
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-        }
-        .active { background: var(--accent-color); color: black; font-weight: bold; }
-
-        /* Card Design */
-        .card {
+            border-radius: 50px;
+            border: 2px solid var(--accent-color);
             background: var(--card-bg);
-            width: 340px;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-color);
+            outline: none;
             transition: 0.3s;
         }
 
-        .card:hover { transform: translateY(-10px); }
-
-        .img-container {
+        /* Card Container for Multiple Items */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 20px;
             width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            width: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .img-box {
+            background: #fff;
             height: 250px;
-            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 15px;
         }
 
-        .img-container img {
+        .img-box img {
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
         }
 
-        .details { padding: 25px; }
-        .title { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+        .details { padding: 20px; text-align: center; }
+        .title { font-size: 18px; font-weight: 700; min-height: 50px; }
+
+        .price-tag {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 10px 0;
+        }
 
         .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+        
         .btn {
             padding: 12px;
             border-radius: 10px;
-            text-align: center;
             text-decoration: none;
             font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
             transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 14px;
         }
 
-        .btn-amazon { background: #FFD814; color: black; }
+        .btn-buy { background: #FFD814; color: #111; border: 1px solid #F2CA00; }
+        .btn-buy:hover { background: #f7df58; }
+        
         .btn-copy { background: #475569; color: white; border: none; cursor: pointer; }
+        .btn-copy:hover { background: #334155; }
 
         #toast {
             visibility: hidden;
-            background: #10b981;
+            background: #059669;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 50px;
             position: fixed;
-            bottom: 30px;
+            bottom: 40px;
+            z-index: 1000;
         }
-        #toast.show { visibility: visible; animation: fadeInUp 0.5s; }
+        #toast.show { visibility: visible; animation: fadeInUp 0.4s ease; }
 
-        @keyframes fadeInUp { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+        @keyframes fadeInUp { from {opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);} }
 
-        footer { margin: 40px; font-size: 12px; opacity: 0.7; }
+        footer { margin: 40px 0; opacity: 0.6; font-size: 14px; }
     </style>
 </head>
-<body data-theme="dark">
+<body data-theme="light">
 
     <button class="theme-switch" onclick="toggleTheme()">
-        <i id="theme-icon" class="fas fa-sun"></i>
-        <span id="theme-text">Light Mode</span>
+        <i id="theme-icon" class="fas fa-moon"></i>
+        <span id="theme-text">Dark Mode</span>
     </button>
 
     <header>
         <div class="logo">Smart Gear PK</div>
-        <input type="text" class="search-box" id="search" placeholder="Search gadgets..." onkeyup="search()">
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="Search for gadgets..." onkeyup="doSearch(this.value)">
+        </div>
     </header>
 
-    <div class="nav-bar">
-        <div class="nav-item active">All</div>
-        <div class="nav-item" onclick="alert('Coming Soon!')">Comparison</div>
-    </div>
-
-    <div class="card" id="productCard">
-        <div class="img-container">
-            <img src="https://m.media-amazon.com/images/I/61iXWpX-B2L._AC_SL1500_.jpg" alt="Smart Ring" onerror="this.src='https://via.placeholder.com/250?text=Product+Image'">
-        </div>
-        <div class="details">
-            <div class="title">Aoyool Smart Ring Health Tracker (Gold)</div>
-            <div style="color: #fbbf24; margin-bottom: 10px;">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+    <div class="container">
+        <div class="card" id="card1">
+            <div class="img-box">
+                <img src="https://m.media-amazon.com/images/I/61iXWpX-B2L._AC_SL1500_.jpg" alt="Smart Ring">
             </div>
-            <div class="btn-group">
-                <a href="https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20" target="_blank" class="btn btn-amazon">
-                    <i class="fab fa-amazon"></i> ORDER ON AMAZON
-                </a>
-                <button class="btn btn-copy" onclick="copyLink()">
-                    <i class="fas fa-link"></i> COPY LINK
-                </button>
+            <div class="details">
+                <div class="title">Aoyool Smart Ring Health Tracker (Gold)</div>
+                <div style="color: #fbbf24; margin: 8px 0;">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="btn-group">
+                    <a href="https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20" target="_blank" class="btn btn-buy">BUY ON AMAZON</a>
+                    <button class="btn btn-copy" onclick="copyLink('https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20')">COPY LINK</button>
+                </div>
             </div>
         </div>
     </div>
 
     <div id="toast">✅ Link Copied!</div>
 
-    <footer>
-        <p onclick="alert('Privacy Policy: We use affiliate links.')" style="cursor:pointer">Privacy Policy</p>
-        <p>© 2026 Smart Gear PK</p>
-    </footer>
+    <footer>© 2026 Smart Gear PK | All Rights Reserved</footer>
 
     <script>
-        // Dark/Light Theme Logic
         function toggleTheme() {
             const body = document.body;
             const icon = document.getElementById('theme-icon');
             const text = document.getElementById('theme-text');
             
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                icon.className = 'fas fa-moon';
-                text.innerText = 'Dark Mode';
-            } else {
+            if (body.getAttribute('data-theme') === 'light') {
                 body.setAttribute('data-theme', 'dark');
                 icon.className = 'fas fa-sun';
                 text.innerText = 'Light Mode';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                icon.className = 'fas fa-moon';
+                text.innerText = 'Dark Mode';
             }
         }
 
-        // Copy Link Logic
-        function copyLink() {
-            const url = "https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20";
+        function copyLink(url) {
             navigator.clipboard.writeText(url);
-            let t = document.getElementById("toast");
+            const t = document.getElementById("toast");
             t.className = "show";
-            setTimeout(() => { t.className = ""; }, 3000);
+            setTimeout(() => { t.className = ""; }, 2500);
         }
 
-        // Search Logic
-        function search() {
-            let input = document.getElementById('search').value.toLowerCase();
-            let card = document.getElementById('productCard');
-            let name = document.querySelector('.title').innerText.toLowerCase();
-            card.style.display = name.includes(input) ? "block" : "none";
+        function doSearch(val) {
+            const query = val.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('.title').innerText.toLowerCase();
+                card.style.display = title.includes(query) ? "block" : "none";
+            });
         }
     </script>
 </body>
