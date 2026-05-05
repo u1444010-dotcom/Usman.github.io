@@ -7,294 +7,282 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0f172a;
+            --bg-color: #0b1120;
             --card-bg: #1e293b;
             --accent-color: #fbbf24;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
             --amazon-gold: #FFD814;
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-main);
+            font-family: 'Inter', 'Segoe UI', sans-serif;
             margin: 0;
-            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Header & Branding */
+        /* Header & Search */
         header {
-            padding: 20px;
+            width: 100%;
             text-align: center;
-            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            padding: 40px 0;
+            background: linear-gradient(180deg, #1e293b 0%, #0b1120 100%);
         }
 
-        .brand-logo {
-            font-size: 28px;
+        .logo {
+            font-size: 36px;
             font-weight: 800;
             color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
+            letter-spacing: -1px;
+            margin-bottom: 25px;
         }
 
-        /* Search Engine */
         .search-container {
             position: relative;
-            max-width: 500px;
-            margin: 0 auto 20px;
+            max-width: 450px;
+            margin: 0 auto;
+            width: 90%;
         }
 
-        .search-container input {
+        .search-box {
             width: 100%;
-            padding: 12px 20px;
-            border-radius: 25px;
-            border: none;
-            background: var(--card-bg);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid #334155;
+            background: #0f172a;
             color: white;
             font-size: 16px;
             outline: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
         }
 
         /* Navigation Tabs */
-        .nav-tabs {
+        .nav-bar {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 12px;
+            margin: 25px 0;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .tab {
-            padding: 8px 20px;
-            background: var(--card-bg);
-            border-radius: 20px;
+        .nav-item {
+            padding: 10px 22px;
+            background: #334155;
+            border-radius: 30px;
             cursor: pointer;
-            font-weight: 500;
             transition: 0.3s;
+            font-size: 14px;
+            font-weight: 600;
             border: 1px solid transparent;
         }
 
-        .tab:hover, .tab.active {
+        .nav-item:hover, .active-tab {
             background: var(--accent-color);
             color: #000;
         }
 
         /* Product Card */
-        .main-content {
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .product-card {
+        .card {
             background: var(--card-bg);
-            width: 100%;
-            max-width: 400px;
+            width: 350px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            margin: 20px;
             border: 1px solid #334155;
+            transition: transform 0.3s ease;
         }
 
-        .product-img {
-            width: 100%;
-            height: 300px;
-            background: #fff;
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .img-container {
+            background: white;
+            height: 280px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px;
+            padding: 15px;
         }
 
-        .product-img img {
+        .img-container img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
         }
 
-        .product-info {
+        .details {
             padding: 25px;
         }
 
-        .product-info h2 {
-            font-size: 20px;
-            margin: 0 0 10px;
+        .title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
             line-height: 1.4;
         }
 
-        .review-stars {
+        .rating {
             color: #fbbf24;
-            margin-bottom: 10px;
             font-size: 14px;
-        }
-
-        .features {
-            font-size: 14px;
-            color: var(--text-secondary);
             margin-bottom: 20px;
-            line-height: 1.6;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        /* Buttons & Actions */
-        .action-btns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 15px;
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .btn {
-            padding: 12px;
-            border-radius: 10px;
+            padding: 14px;
+            border-radius: 12px;
             text-align: center;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
+            font-weight: 700;
+            font-size: 15px;
             cursor: pointer;
-            transition: 0.3s;
+            border: none;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .btn-amazon {
-            background: var(--amazon-gold);
-            color: #111;
-            grid-column: span 2;
+        .btn-buy { 
+            background: var(--amazon-gold); 
+            color: #111; 
         }
 
-        .btn-wa {
-            background: #25D366;
-            color: white;
+        .btn-buy:hover { background: #eab308; }
+
+        .btn-copy { 
+            background: #475569; 
+            color: white; 
         }
 
-        .btn-copy {
-            background: #6366f1;
-            color: white;
-        }
+        .btn-copy:hover { background: #64748b; }
 
-        /* Footer & Privacy */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-secondary);
-            font-size: 12px;
-        }
-
-        .privacy-link {
-            color: var(--accent-color);
-            text-decoration: none;
-            margin-top: 10px;
-            display: inline-block;
-        }
-
-        /* Toast notification */
+        /* Toast Popup */
         #toast {
             visibility: hidden;
-            min-width: 200px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 5px;
-            padding: 16px;
+            background: #10b981;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
             position: fixed;
-            z-index: 1;
             bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            z-index: 100;
         }
 
-        #toast.show {
-            visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        #toast.show { visibility: visible; animation: fadeInUp 0.5s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+        footer {
+            margin: 50px 0;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 13px;
+        }
+
+        .privacy-btn {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            cursor: pointer;
+            font-size: 13px;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="brand-logo">Smart Gear PK</div>
+    <div class="logo">Smart Gear PK</div>
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search gadgets..." onkeyup="searchWork()">
+        <input type="text" class="search-box" id="search" placeholder="Search product name..." onkeyup="doSearch()">
     </div>
 </header>
 
-<div class="nav-tabs">
-    <div class="tab active" onclick="tabMsg('All Products Loading...')">All</div>
-    <div class="tab" onclick="tabMsg('Gadgets Filtered')">Gadgets</div>
-    <div class="tab" onclick="alert('Coming Soon!')">Mobile Comparison</div>
+<div class="nav-bar">
+    <div class="nav-item active-tab">All</div>
+    <div class="nav-item">Gadgets</div>
+    <div class="nav-item" onclick="alert('Coming Soon!')">Mobile Comparison</div>
 </div>
 
-<div class="main-content">
-    <div class="product-card" id="productCard">
-        <div class="product-img">
-            <img src="https://m.media-amazon.com/images/I/61iXWpX-B2L._AC_SL1500_.jpg" alt="Smart Ring">
+<div class="card" id="mainCard">
+    <div class="img-container">
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/4409459351929401961_0" alt="Smart Ring Gold">
+    </div>
+    <div class="details">
+        <div class="title">Smart Ring Health & Fitness Tracker (Gold, Size 8)</div>
+        <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 
+            <span style="color:var(--text-dim); font-weight: 400;">(1.2k+ Reviews)</span>
         </div>
-        <div class="product-info">
-            <h2>Aoyool Smart Health Ring</h2>
-            <div class="review-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                <span style="color: #94a3b8; font-size: 12px;">(1,240 Reviews)</span>
-            </div>
-            <div class="features">
-                • Heart Rate & SpO2 Tracking<br>
-                • IP68 Waterproof Gold Finish<br>
-                • No Subscription Fee
-            </div>
-            
-            <div class="action-btns">
-                <a href="https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20" target="_blank" class="btn btn-amazon">
-                    <i class="fab fa-amazon"></i> BUY ON AMAZON
-                </a>
-                <a href="https://wa.me/YOUR_NUMBER" class="btn btn-wa">
-                    <i class="fab fa-whatsapp"></i> WHATSAPP
-                </a>
-                <div class="btn btn-copy" onclick="copyLink()">
-                    <i class="fas fa-copy"></i> COPY LINK
-                </div>
-            </div>
+        
+        <div class="btn-group">
+            <a href="https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20" target="_blank" class="btn btn-buy">
+                <i class="fab fa-amazon"></i> ORDER ON AMAZON
+            </a>
+            <button class="btn btn-copy" onclick="copyUrl()">
+                <i class="fas fa-link"></i> COPY PRODUCT LINK
+            </button>
         </div>
     </div>
 </div>
 
-<div id="toast">Link Copied to Clipboard!</div>
+<div id="toast">✅ Link Copied Successfully!</div>
 
 <footer>
-    <p>&copy; 2026 Smart Gear PK. All Rights Reserved.</p>
-    <a href="#" class="privacy-link" onclick="alert('Privacy Policy: We do not store your data. We use affiliate links to earn commission.')">Privacy Policy & Terms</a>
+    <button class="privacy-btn" onclick="alert('Privacy Policy: We do not collect personal data. We use Amazon affiliate links.')">Privacy Policy</button>
+    <p>© 2026 Smart Gear PK</p>
 </footer>
 
 <script>
-    // Search Functionality
-    function searchWork() {
-        let input = document.getElementById('searchInput').value.toLowerCase();
-        let card = document.getElementById('productCard');
-        let title = document.querySelector('.product-info h2').innerText.toLowerCase();
+    // Real-time Search Engine
+    function doSearch() {
+        let input = document.getElementById('search').value.toLowerCase();
+        let card = document.getElementById('mainCard');
+        let productName = document.querySelector('.title').innerText.toLowerCase();
         
-        if (title.includes(input)) {
+        if (productName.includes(input)) {
             card.style.display = "block";
         } else {
             card.style.display = "none";
         }
     }
 
-    // Tab Functionality
-    function tabMsg(msg) {
-        console.log(msg);
-        // Add filtering logic here if you have more products
-    }
-
-    // Copy Link Functionality
-    function copyLink() {
-        const url = "https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20";
-        navigator.clipboard.writeText(url);
-        
-        var x = document.getElementById("toast");
-        x.className = "show";
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    // Copy Link with Feedback
+    function copyUrl() {
+        const link = "https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20";
+        navigator.clipboard.writeText(link).then(() => {
+            let t = document.getElementById("toast");
+            t.className = "show";
+            setTimeout(() => { t.className = ""; }, 2500);
+        });
     }
 </script>
 
