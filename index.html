@@ -3,174 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Gear PK | Ultra Store</title>
+    <title>Smart Gear PK | Usman Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         :root { 
-            --bg-color: #f4f4f9; --text-color: #333; --card-bg: white; 
-            --nav-bg: #2c3e50; --accent: #e67e22; --border: #ddd;
+            --bg-color: #f0f2f5; 
+            --text-color: #333; 
+            --card-bg: #ffffff; 
+            --nav-bg: #232f3e; 
+            --accent: #ff9900; 
+            --border: #ddd;
         }
+        
         body.dark-mode { 
-            --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e; 
-            --nav-bg: #000; --border: #333;
+            --bg-color: #1a1a1a; 
+            --text-color: #f1f1f1; 
+            --card-bg: #2d2d2d; 
+            --nav-bg: #000000; 
+            --border: #444;
         }
 
-        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); transition: 0.4s; scroll-behavior: smooth; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg-color); 
+            /* Tech Style Background */
+            background-image: radial-gradient(#d1d1d1 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            color: var(--text-color); 
+            transition: 0.4s; 
+        }
 
-        /* 1. Top Bar & Header */
-        .top-bar { background: #1a252f; color: #fff; font-size: 0.8rem; padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; }
-        header { background-color: var(--nav-bg); color: white; padding: 30px 20px; text-align: center; position: relative; border-bottom: 4px solid var(--accent); }
-        
-        .header-tools { position: absolute; top: 20px; right: 20px; display: flex; gap: 15px; }
-        .dark-toggle { background: var(--accent); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
+        header { 
+            background-color: var(--nav-bg); 
+            color: white; 
+            padding: 40px 20px; 
+            text-align: center; 
+            position: relative; 
+            border-bottom: 5px solid var(--accent);
+        }
 
-        /* 2. Enhanced Cards with Zoom */
-        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 30px; gap: 25px; }
-        .card { background: var(--card-bg); border-radius: 20px; width: 320px; overflow: hidden; transition: 0.4s; border: 1px solid var(--border); position: relative; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        
-        .img-container { overflow: hidden; background: white; height: 250px; }
-        .card img { width: 100%; height: 100%; object-fit: contain; transition: 0.5s; }
-        .card:hover img { transform: scale(1.1); }
+        .dark-toggle { 
+            position: absolute; top: 20px; right: 20px; 
+            background: var(--accent); border: none; color: white; 
+            width: 40px; height: 40px; border-radius: 50%; cursor: pointer; 
+        }
 
-        .status-badge { position: absolute; top: 15px; right: 15px; background: #e67e22; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.7rem; font-weight: bold; z-index: 2; }
+        /* Search Engine Styles */
+        .search-engine-box {
+            max-width: 600px;
+            margin: -30px auto 20px;
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 50px;
+            display: flex;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 10;
+            position: relative;
+        }
 
-        /* 3. Comparison Table Section */
-        .compare-section { padding: 50px 20px; background: var(--card-bg); margin: 40px 0; }
-        .compare-table { width: 100%; max-width: 900px; margin: 0 auto; border-collapse: collapse; text-align: center; }
-        .compare-table th, .compare-table td { padding: 15px; border: 1px solid var(--border); }
-        .compare-table th { background: var(--nav-bg); color: white; }
+        .search-engine-box input {
+            flex: 1;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px 0 0 50px;
+            outline: none;
+            font-size: 1.1rem;
+            background: transparent;
+            color: var(--text-color);
+        }
 
-        /* 4. Testimonials Slider Area */
-        .testimonials { padding: 40px; text-align: center; background: rgba(230, 126, 34, 0.1); }
-        .testi-card { font-style: italic; color: var(--text-color); max-width: 600px; margin: 0 auto; }
+        .search-engine-box button {
+            background: var(--accent);
+            border: none;
+            color: white;
+            padding: 0 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-        /* 5. Scroll to Top */
-        #scrollTop { position: fixed; bottom: 100px; right: 30px; background: var(--nav-bg); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; display: none; z-index: 99; }
+        /* Coming Soon Section */
+        .coming-soon-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-        /* Floating WhatsApp */
-        .float-wa { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1000; text-decoration: none; }
+        .coming-soon-tag {
+            display: inline-block;
+            background: rgba(0,0,0,0.1);
+            padding: 8px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px dashed var(--accent);
+            font-weight: bold;
+            color: var(--accent);
+        }
 
-        .btn { display: block; width: 80%; margin: 10px auto; background: var(--accent); color: white; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; }
-        .newsletter { background: var(--nav-bg); color: white; padding: 40px; text-align: center; }
+        body.dark-mode .coming-soon-tag {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .container { 
+            display: flex; flex-wrap: wrap; justify-content: center; 
+            padding: 20px; gap: 25px; 
+        }
+
+        .card { 
+            background: var(--card-bg); border-radius: 12px; 
+            width: 300px; overflow: hidden; transition: 0.3s; 
+            border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+
+        .card img { width: 100%; height: 220px; object-fit: contain; background: #fff; padding: 10px; }
+
+        .card-info { padding: 15px; }
+        .card-info h3 { margin: 0 0 10px; font-size: 1.2rem; }
+        .price { color: #2ecc71; font-size: 1.3rem; font-weight: bold; }
+
+        .buy-btn { 
+            display: block; background: var(--accent); color: white; 
+            text-align: center; padding: 12px; text-decoration: none; 
+            margin-top: 10px; border-radius: 6px; font-weight: bold;
+        }
+
+        .float-wa { 
+            position: fixed; bottom: 30px; right: 30px; 
+            background: #25D366; color: white; width: 60px; height: 60px; 
+            border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; font-size: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        footer { text-align: center; padding: 40px; background: var(--nav-bg); color: white; margin-top: 50px; }
     </style>
 </head>
 <body>
 
-<div class="top-bar">
-    <span>🔥 Ramadan Tech Deals - Up to 40% OFF</span>
-    <span id="liveClock"></span>
-</div>
-
 <header>
-    <div class="header-tools">
-        <button class="dark-toggle" onclick="toggleDarkMode()"><i class="fa fa-moon-o" id="modeIcon"></i></button>
-    </div>
-    <h1>Smart Gear Online PK</h1>
-    <p>By Usman - Pakistan's Tech Hub</p>
+    <button class="dark-toggle" onclick="toggleDarkMode()"><i class="fa fa-moon-o" id="modeIcon"></i></button>
+    <h1>Smart Gear PK</h1>
+    <p>Premium Tech Gadgets by Usman</p>
 </header>
 
-<div class="container">
-    <div class="card">
-        <span class="status-badge">NEW</span>
-        <div class="img-container">
-            <img src="https://m.media-amazon.com/images/I/61ffOITjI-L._AC_SX569_.jpg" alt="Smart Ring">
-        </div>
-        <div style="padding: 15px;">
-            <h3>Smart Ring Pro</h3>
-            <p style="color: #2ecc71; font-weight: bold;">Rs. 8,500</p>
-            <a href="#" class="btn" onclick="addToCart()">Add to Bag</a>
+<div class="search-engine-box">
+    <input type="text" id="mainSearch" placeholder="Search gadgets (e.g. Ring, Pen, Mobile)..." onkeyup="searchSite()">
+    <button><i class="fa fa-search"></i> Search</button>
+</div>
+
+<div class="coming-soon-container">
+    <div class="coming-soon-tag">All Gadgets: Coming Soon</div>
+    <div class="coming-soon-tag">Mobile Comparison: Coming Soon</div>
+</div>
+
+<div class="container" id="productGrid">
+    <div class="card" data-name="smart health ring">
+        <img src="https://m.media-amazon.com/images/I/61ffOITjI-L._AC_SX569_.jpg" alt="Ring">
+        <div class="card-info">
+            <h3>Smart Health Ring</h3>
+            <p class="price">Rs. 8,500</p>
+            <a href="https://www.amazon.com/dp/B0GHTYJ24L" target="_blank" class="buy-btn">Buy from Amazon</a>
         </div>
     </div>
 
-    <div class="card">
-        <span class="status-badge" style="background:#e74c3c">LIMITED</span>
-        <div class="img-container">
-            <img src="https://m.media-amazon.com/images/I/71eZP0KRDkL._AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Pen">
-        </div>
-        <div style="padding: 15px;">
+    <div class="card" data-name="magnetic fidget pen">
+        <img src="https://m.media-amazon.com/images/I/71eZP0KRDkL._AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Pen">
+        <div class="card-info">
             <h3>Magnetic Fidget Pen</h3>
-            <p style="color: #2ecc71; font-weight: bold;">Rs. 2,850</p>
-            <a href="#" class="btn" onclick="addToCart()">Add to Bag</a>
+            <p class="price">Rs. 2,850</p>
+            <a href="https://www.amazon.com/dp/B0D531KWFV" target="_blank" class="buy-btn">Buy from Amazon</a>
+        </div>
+    </div>
+
+    <div class="card" data-name="magsafe iphone case">
+        <img src="https://m.media-amazon.com/images/I/61dJHCFo1oL._AC_SL1500_.jpg" alt="Case">
+        <div class="card-info">
+            <h3>MagSafe Military Case</h3>
+            <p class="price">Rs. 3,200</p>
+            <a href="https://www.amazon.com/dp/B0CJDVRD41" target="_blank" class="buy-btn">Buy from Amazon</a>
         </div>
     </div>
 </div>
-
-<section class="compare-section">
-    <h2 style="text-align: center;">Gadget Comparison</h2>
-    <table class="compare-table">
-        <thead>
-            <tr>
-                <th>Feature</th>
-                <th>Smart Ring</th>
-                <th>Fidget Pen</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Function</td>
-                <td>Health Tracking</td>
-                <td>Writing/Stress</td>
-            </tr>
-            <tr>
-                <td>Battery</td>
-                <td>5-7 Days</td>
-                <td>N/A</td>
-            </tr>
-            <tr>
-                <td>Material</td>
-                <td>Titanium</td>
-                <td>Magnets</td>
-            </tr>
-        </tbody>
-    </table>
-</section>
-
-<section class="testimonials">
-    <h2>What Our Techies Say</h2>
-    <div class="testi-card">
-        <p>"Pakistan mein aisi gadgets milna mushkil tha. Usman ki site se shopping ka experience bohat acha raha!"</p>
-        <strong>- Bilal Khan, Karachi</strong>
-    </div>
-</section>
-
-<section class="newsletter">
-    <h3>Join 5000+ Tech Lovers</h3>
-    <input type="email" placeholder="Your Email" style="padding: 10px; border-radius: 5px; border: none; width: 250px;">
-    <button style="padding: 10px 20px; background: var(--accent); color: white; border: none; cursor: pointer; border-radius: 5px;">Join</button>
-</section>
-
-<button id="scrollTop" onclick="window.scrollTo(0,0)"><i class="fa fa-arrow-up"></i></button>
 
 <a href="https://wa.me/923000000000" class="float-wa" target="_blank"><i class="fa fa-whatsapp"></i></a>
 
 <footer>
-    <p>&copy; 2026 Smart Gear PK. Powered by Usman.</p>
+    <p><strong>Smart Gear Online PK</strong></p>
+    <p>Created by Usman | © 2026</p>
 </footer>
 
 <script>
-    // Live Clock
-    setInterval(() => {
-        document.getElementById('liveClock').innerText = new Date().toLocaleTimeString();
-    }, 1000);
-
-    // Scroll Button Visibility
-    window.onscroll = function() {
-        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-            document.getElementById("scrollTop").style.display = "block";
-        } else {
-            document.getElementById("scrollTop").style.display = "none";
-        }
-    };
-
     function toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
         const icon = document.getElementById('modeIcon');
         icon.className = document.body.classList.contains('dark-mode') ? 'fa fa-sun-o' : 'fa fa-moon-o';
     }
 
-    function addToCart() {
-        alert("Awesome! Added to your cart.");
+    // Live Search Logic
+    function searchSite() {
+        let input = document.getElementById('mainSearch').value.toLowerCase();
+        let cards = document.querySelectorAll('.card');
+        
+        cards.forEach(card => {
+            let name = card.getAttribute('data-name');
+            if (name.includes(input)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
     }
 </script>
 
