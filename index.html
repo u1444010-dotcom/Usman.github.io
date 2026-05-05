@@ -10,8 +10,12 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); scroll-behavior: smooth; }
         
         header { background-color: var(--nav-bg); color: white; padding: 30px 20px; text-align: center; }
-        .logo-img { height: 80px; width: auto; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto; filter: drop-shadow(0 0 8px rgba(230, 126, 34, 0.6)); }
-        header h1 { margin: 5px 0; font-size: 2.2rem; color: #e67e22; }
+        
+        /* Logo Box Fix */
+        .logo-container { margin-bottom: 10px; display: flex; justify-content: center; align-items: center; min-height: 80px; }
+        .logo-img { height: 80px; width: auto; filter: drop-shadow(0 0 8px rgba(230, 126, 34, 0.6)); }
+        
+        header h1 { margin: 5px 0; font-size: 2.2rem; color: #e67e22; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
 
         .search-bar { margin-top: 15px; display: flex; justify-content: center; }
         .search-bar input { padding: 10px; width: 250px; border-radius: 5px 0 0 5px; border: none; outline: none; }
@@ -49,7 +53,9 @@
 <body>
 
 <header>
-    <img src="https://i.postimg.cc/8zQvX3fR/smart-gear-pk-logo.png" alt="Smart Gear PK Logo" class="logo-img">
+    <div class="logo-container">
+        <img src="https://i.postimg.cc/8zQvX3fR/smart-gear-pk-logo.png" alt="Smart Gear PK" class="logo-img" onerror="this.style.display='none'">
+    </div>
     <h1>Smart Gear Online PK</h1>
     <div class="search-bar">
         <input type="text" id="gadgetSearch" placeholder="Search gadgets..." onkeyup="searchGadgets()">
@@ -77,13 +83,13 @@
                     <b>Sensor:</b> Optical | <b>Material:</b> Lithium-Ion
                 </div>
                 <div class="description" id="desc1">
-                    【Measure Size】To ensure the perfect fit, please check the sizing chart and measure your finger circumference before ordering.
+                    【Measure Size】Please check the sizing chart before ordering. Proper sizing ensures long-lasting comfort.
                     <br><br>
-                    【24/7 Monitoring】Equipped with high-precision sensors, tracks heart rate, blood oxygen, stress levels, and HRV.
+                    【24/7 Monitoring】Tracks heart rate, blood oxygen, stress levels, and HRV for proactive daily health management.
                     <br><br>
-                    【Sleep & Sport】Automatically monitors sleep cycles (deep, light, REM). Logs steps, calories, distance, and workout intensity.
+                    【Sleep & Sport】Automatically monitors deep sleep, light sleep, and REM. Logs steps, calories, and intensity.
                     <br><br>
-                    【Waterproof】IP68 rating allows safe wear during handwashing and swimming. Matte finish resists fingerprints.
+                    【Durability】IP68 Waterproof and scratch-resistant matte finish for durable performance.
                 </div>
                 <span class="read-more" onclick="toggleReadMore('desc1')">Read More...</span>
             </div>
@@ -99,11 +105,11 @@
                 <h3>Magnetic Fidget Toy Pen</h3>
                 <div class="price-tag">Multi-Functional Stress Relief</div>
                 <div class="description" id="desc2">
-                    <b>MAGNET TOYS PENS:</b> This fidget pen is not just a pen, it's also a finger fidget toy that can be transformed into creative combinations. Perfect for stress-relief for students, engineers, and office workers.
+                    <b>MAGNET TOYS PENS:</b> Not just a pen, but a finger fidget toy that can be transformed into creative combinations. Perfect for stress-relief for students, engineers, and doctors.
                     <br><br>
-                    <b>DEFORMATION TOY:</b> Change shape into swords, robots, or monsters anytime. It’s a great gadget to pass the time and get creative.
+                    <b>DEFORMATION TOY:</b> Change shape into swords, robots, or monsters anytime. A cool gadget to pass the time.
                     <br><br>
-                    <b>STRESS-RELIEF:</b> Helps release anxiety and keeps your mind flowing. Novel gift for birthdays, Teacher's Day, or Christmas.
+                    <b>STRESS-RELIEF:</b> Helps release anxiety and keep your creative flowing. Ideal novel gift for any occasion.
                 </div>
                 <span class="read-more" onclick="toggleReadMore('desc2')">Read More...</span>
             </div>
@@ -123,13 +129,11 @@
                     <b>Protection:</b> 10ft Military Drop Test
                 </div>
                 <div class="description" id="desc3">
-                    【Super Magnetic】Powerful built-in magnets for easier place-and-go wireless charging, fully compatible with MagSafe.
+                    【Super Magnetic】Powerful built-in magnets for easier MagSafe charging and place-and-go convenience.
                     <br><br>
-                    【Shock Protection】Passing military drop tests up to 10 feet, effectively protecting your device from violent impacts.
+                    【Matte Translucent】Premium TPU frame with matte coating that blocks fingerprints, smudges, and scratches.
                     <br><br>
-                    【Matte Translucent Back】Premium touch and excellent grip. The matte coating blocks smudges, fingerprints, and scratches.
-                    <br><br>
-                    【Compatibility】Precise cutouts for easy access to all ports, buttons, and cameras. Soft, sensitive buttons with good response.
+                    【Military Protection】Protects from impacts up to 10 feet. Precise cutouts for all sensors and cameras.
                 </div>
                 <span class="read-more" onclick="toggleReadMore('desc3')">Read More...</span>
             </div>
