@@ -7,49 +7,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-overlay: rgba(255, 255, 255, 0.85);
-            --wallpaper: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --text-color: #1e293b;
+            /* Futuristic Tech Background */
+            --wallpaper: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop');
+            --bg-overlay: rgba(240, 244, 248, 0.85);
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --text-color: #0f172a;
             --accent-color: #f59e0b;
-            --shadow: 0 10px 25px rgba(0,0,0,0.1);
+            --glass-border: rgba(255, 255, 255, 0.4);
         }
 
         [data-theme="dark"] {
-            --bg-overlay: rgba(15, 23, 42, 0.95);
-            --wallpaper: none;
-            --card-bg: #1e293b;
+            --bg-overlay: rgba(15, 23, 42, 0.9);
+            --card-bg: rgba(30, 41, 59, 0.7);
             --text-color: #f8fafc;
             --accent-color: #fbbf24;
-            --shadow: 0 10px 30px rgba(0,0,0,0.5);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             min-height: 100vh;
             background-image: var(--wallpaper);
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             position: relative;
-            transition: background 0.5s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: var(--text-color);
+            transition: 0.5s;
         }
 
+        /* Glassmorphism Effect Over Background */
         body::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-overlay);
+            backdrop-filter: blur(8px); /* Soft blur for professional look */
             z-index: -1;
-            transition: 0.5s;
         }
 
-        /* Theme Switcher */
+        /* Theme Switcher Button */
         .theme-switch {
             position: fixed;
             top: 20px; right: 20px;
@@ -61,131 +61,140 @@
             border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: transform 0.2s;
         }
-
-        .theme-switch:active { transform: scale(0.95); }
 
         header {
             width: 100%;
             text-align: center;
-            padding: 40px 0 20px;
+            padding: 50px 0 30px;
         }
 
         .logo {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 900;
             color: var(--accent-color);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .search-container {
             width: 90%;
-            max-width: 400px;
-            margin: 0 auto;
+            max-width: 450px;
+            margin: 25px auto 0;
         }
 
         .search-box {
             width: 100%;
-            padding: 12px 20px;
+            padding: 14px 25px;
             border-radius: 50px;
             border: 2px solid var(--accent-color);
             background: var(--card-bg);
             color: var(--text-color);
+            backdrop-filter: blur(10px);
             outline: none;
-            transition: 0.3s;
+            font-size: 16px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        /* Card Container for Multiple Items */
         .container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 25px;
-            padding: 20px;
+            gap: 30px;
+            padding: 40px 20px;
             width: 100%;
             max-width: 1200px;
         }
 
+        /* Modern Glass Card */
         .card {
             background: var(--card-bg);
             width: 320px;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            border: 1px solid var(--accent-color);
         }
 
         .img-box {
             background: #fff;
-            height: 250px;
+            height: 260px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 20px;
         }
 
         .img-box img {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
         }
 
-        .details { padding: 20px; text-align: center; }
-        .title { font-size: 18px; font-weight: 700; min-height: 50px; }
+        .details { padding: 25px; text-align: center; color: var(--text-color); }
+        .title { font-size: 18px; font-weight: 700; min-height: 45px; margin-bottom: 10px; }
 
-        .price-tag {
-            font-size: 22px;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin: 10px 0;
-        }
-
-        .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+        .btn-group { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
         
         .btn {
-            padding: 12px;
-            border-radius: 10px;
+            padding: 14px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
             text-transform: uppercase;
-            font-size: 14px;
+            font-size: 13px;
+            letter-spacing: 1px;
         }
 
-        .btn-buy { background: #FFD814; color: #111; border: 1px solid #F2CA00; }
-        .btn-buy:hover { background: #f7df58; }
+        .btn-buy { 
+            background: linear-gradient(135deg, #FFD814, #f59e0b); 
+            color: #000; 
+            border: none;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
         
-        .btn-copy { background: #475569; color: white; border: none; cursor: pointer; }
-        .btn-copy:hover { background: #334155; }
+        .btn-copy { 
+            background: rgba(71, 85, 105, 0.2); 
+            color: var(--text-color); 
+            border: 1px solid var(--glass-border); 
+            cursor: pointer; 
+        }
+        .btn-copy:hover { background: var(--accent-color); color: #000; }
 
+        /* Toast Styling */
         #toast {
             visibility: hidden;
-            background: #059669;
+            background: #10b981;
             color: white;
-            padding: 12px 25px;
+            padding: 15px 30px;
             border-radius: 50px;
             position: fixed;
-            bottom: 40px;
+            bottom: 30px;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
             z-index: 1000;
         }
-        #toast.show { visibility: visible; animation: fadeInUp 0.4s ease; }
+        #toast.show { visibility: visible; animation: fadeInUp 0.5s; }
 
-        @keyframes fadeInUp { from {opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);} }
+        @keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
 
-        footer { margin: 40px 0; opacity: 0.6; font-size: 14px; }
+        footer { margin: 50px 0; color: var(--text-color); opacity: 0.6; font-weight: 500; }
     </style>
 </head>
 <body data-theme="light">
@@ -198,7 +207,7 @@
     <header>
         <div class="logo">Smart Gear PK</div>
         <div class="search-container">
-            <input type="text" class="search-box" placeholder="Search for gadgets..." onkeyup="doSearch(this.value)">
+            <input type="text" class="search-box" placeholder="Search gadgets (e.g. Ring, Gold)..." onkeyup="doSearch(this.value)">
         </div>
     </header>
 
@@ -209,20 +218,20 @@
             </div>
             <div class="details">
                 <div class="title">Aoyool Smart Ring Health Tracker (Gold)</div>
-                <div style="color: #fbbf24; margin: 8px 0;">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <div style="color: #fbbf24; margin: 10px 0;">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
                 <div class="btn-group">
-                    <a href="https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20" target="_blank" class="btn btn-buy">BUY ON AMAZON</a>
-                    <button class="btn btn-copy" onclick="copyLink('https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20')">COPY LINK</button>
+                    <a href="https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20" target="_blank" class="btn btn-buy">Buy on Amazon</a>
+                    <button class="btn btn-copy" onclick="copyLink('https://www.amazon.com/dp/B0G1CB4F1F?tag=mobilecompa09-20')">Copy Link</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="toast">✅ Link Copied!</div>
+    <div id="toast">✅ Link Copied Successfully!</div>
 
-    <footer>© 2026 Smart Gear PK | All Rights Reserved</footer>
+    <footer>© 2026 Smart Gear PK | Premium Tech Curator</footer>
 
     <script>
         function toggleTheme() {
@@ -245,7 +254,7 @@
             navigator.clipboard.writeText(url);
             const t = document.getElementById("toast");
             t.className = "show";
-            setTimeout(() => { t.className = ""; }, 2500);
+            setTimeout(() => { t.className = ""; }, 3000);
         }
 
         function doSearch(val) {
