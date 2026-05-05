@@ -7,45 +7,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         :root { --bg-color: #f4f4f9; --text-color: #333; --card-bg: white; --nav-bg: #2c3e50; }
-        .dark-mode { --bg-color: #1a1a2e; --text-color: #f4f4f9; --card-bg: #16213e; --nav-bg: #0f3460; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); scroll-behavior: smooth; transition: 0.3s; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); scroll-behavior: smooth; }
         
-        /* Header & Logo */
         header { background-color: var(--nav-bg); color: white; padding: 30px 20px; text-align: center; }
         .logo-img { height: 80px; width: auto; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto; filter: drop-shadow(0 0 8px rgba(230, 126, 34, 0.6)); }
         header h1 { margin: 5px 0; font-size: 2.2rem; color: #e67e22; }
 
-        .controls { position: fixed; top: 80px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
-        .control-btn { padding: 12px; border-radius: 50%; border: none; cursor: pointer; background: #e67e22; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        
         .search-bar { margin-top: 15px; display: flex; justify-content: center; }
         .search-bar input { padding: 10px; width: 250px; border-radius: 5px 0 0 5px; border: none; outline: none; }
         .search-bar button { padding: 10px 15px; background: #e67e22; border: none; color: white; border-radius: 0 5px 5px 0; cursor: pointer; }
         
-        .category-nav { background: var(--card-bg); padding: 15px; text-align: center; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; }
-        .category-nav a { margin: 0 15px; text-decoration: none; color: var(--text-color); font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .category-nav a:hover { color: #e67e22; }
-        
+        .filter-nav { background: #fff; padding: 15px; text-align: center; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .filter-nav button { background: none; border: 1px solid #e67e22; color: #e67e22; padding: 8px 15px; margin: 5px; border-radius: 20px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .filter-nav button:hover, .filter-nav button.active { background: #e67e22; color: white; }
+
         .section-title { color: #e67e22; margin: 40px 0 10px; font-size: 1.8rem; text-align: center; }
-        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; gap: 20px; }
         
-        /* Product Cards */
-        .card { background: var(--card-bg); border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 15px; width: 320px; overflow: hidden; transition: 0.3s; text-align: center; padding-bottom: 20px; position: relative; }
-        .card:hover { transform: translateY(-10px); }
-        .card img { width: 100%; height: 220px; object-fit: contain; background: white; padding: 10px; }
+        .card { background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 350px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; border: 1px solid #eee; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; height: 250px; object-fit: contain; background: #fff; padding: 10px; }
         
-        .btn { display: inline-block; background-color: #e67e22; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; }
-        .share-wa { display: inline-block; background-color: #25D366; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; margin-top: 10px; margin-left: 5px; }
+        .card-content { padding: 15px; text-align: left; }
+        .card-content h3 { margin: 0 0 10px; color: #2c3e50; font-size: 1.3rem; }
+        .price-tag { color: #e67e22; font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; }
         
-        footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: 20px; }
-        .hidden { display: none !important; }
+        .specs { font-size: 0.85rem; background: #f9f9f9; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+        .description { font-size: 0.85rem; line-height: 1.4; color: #555; height: 85px; overflow: hidden; position: relative; }
+        .description.expanded { height: auto; }
+        
+        .read-more { color: #3498db; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: block; margin-top: 5px; margin-bottom: 10px; }
+        
+        .btn-group { display: flex; gap: 10px; margin-top: auto; padding: 15px; border-top: 1px solid #eee; }
+        .btn { flex: 1; background-color: #e67e22; color: white; padding: 10px; text-decoration: none; border-radius: 5px; text-align: center; font-weight: bold; font-size: 0.9rem; }
+        .share-wa { background-color: #25D366; color: white; padding: 10px; border-radius: 5px; text-decoration: none; width: 40px; text-align: center; }
+        
+        #comingSoon { display: none; text-align: center; padding: 100px 20px; font-size: 2rem; color: #e67e22; font-weight: bold; }
+        footer { text-align: center; padding: 30px; background: #2c3e50; color: white; margin-top: 40px; }
     </style>
 </head>
 <body>
-
-<div class="controls">
-    <button class="control-btn" onclick="toggleTheme()"><i class="fa fa-moon-o" id="themeIcon"></i></button>
-</div>
 
 <header>
     <img src="https://i.postimg.cc/8zQvX3fR/smart-gear-pk-logo.png" alt="Smart Gear PK Logo" class="logo-img">
@@ -56,62 +57,142 @@
     </div>
 </header>
 
-<nav class="category-nav">
-    <a onclick="filterBy('all')">All Products</a>
-    <a href="#privacy-policy">Privacy Policy</a>
+<nav class="filter-nav">
+    <button onclick="showSection('all')" id="btnAll" class="active">All</button>
+    <button onclick="showSection('gadgets')" id="btnGadgets">Gadgets</button>
+    <button onclick="showSection('mobile')" id="btnMobile">Mobile Comparison</button>
 </nav>
 
-<div id="sectionsWrapper">
+<div id="productsWrapper">
     <h2 class="section-title">🌟 Featured Products</h2>
     <div class="container">
         
-        <div class="card tech">
+        <div class="card">
             <img src="https://m.media-amazon.com/images/I/61ffOITjI-L._AC_SX569_.jpg" alt="Smart Health Ring">
-            <h3>Smart Health & Fitness Ring</h3>
-            <p style="padding: 0 10px; font-size: 0.9rem;">Heart Rate & Sleep Tracking</p>
-            <a href="https://www.amazon.com/dp/B0GHTYJ24L" target="_blank" class="btn">View on Amazon</a>
-            <a href="#" onclick="shareOnWhatsApp('Smart Ring', 'https://www.amazon.com/dp/B0GHTYJ24L')" class="share-wa"><i class="fa fa-whatsapp"></i></a>
+            <div class="card-content">
+                <h3>Smart Health & Fitness Ring</h3>
+                <div class="price-tag">Color: Gold | Size: 10</div>
+                <div class="specs">
+                    <b>Brand:</b> Moremore | <b>Battery:</b> 6 Days<br>
+                    <b>Sensor:</b> Optical | <b>Material:</b> Lithium-Ion
+                </div>
+                <div class="description" id="desc1">
+                    【Measure Size】To ensure the perfect fit, please check the sizing chart and measure your finger circumference before ordering.
+                    <br><br>
+                    【24/7 Monitoring】Equipped with high-precision sensors, tracks heart rate, blood oxygen, stress levels, and HRV.
+                    <br><br>
+                    【Sleep & Sport】Automatically monitors sleep cycles (deep, light, REM). Logs steps, calories, distance, and workout intensity.
+                    <br><br>
+                    【Waterproof】IP68 rating allows safe wear during handwashing and swimming. Matte finish resists fingerprints.
+                </div>
+                <span class="read-more" onclick="toggleReadMore('desc1')">Read More...</span>
+            </div>
+            <div class="btn-group">
+                <a href="https://www.amazon.com/dp/B0GHTYJ24L" target="_blank" class="btn">View on Amazon</a>
+                <a href="#" onclick="shareOnWhatsApp('Smart Ring Gold', 'https://www.amazon.com/dp/B0GHTYJ24L')" class="share-wa"><i class="fa fa-whatsapp"></i></a>
+            </div>
         </div>
 
-        <div class="card tech">
-            <img src="https://m.media-amazon.com/images/I/71eZP0KRDkL._AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Magnetic Tool">
-            <h3>Magnetic Pickup Tool</h3>
-            <p style="padding: 0 10px; font-size: 0.9rem;">LED Lights & Flexible Neck</p>
-            <a href="https://www.amazon.com/dp/B0D531KWFV" target="_blank" class="btn">View on Amazon</a>
-            <a href="#" onclick="shareOnWhatsApp('Magnetic Tool', 'https://www.amazon.com/dp/B0D531KWFV')" class="share-wa"><i class="fa fa-whatsapp"></i></a>
+        <div class="card">
+            <img src="https://m.media-amazon.com/images/I/71eZP0KRDkL._AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Magnetic Fidget Pen">
+            <div class="card-content">
+                <h3>Magnetic Fidget Toy Pen</h3>
+                <div class="price-tag">Multi-Functional Stress Relief</div>
+                <div class="description" id="desc2">
+                    <b>MAGNET TOYS PENS:</b> This fidget pen is not just a pen, it's also a finger fidget toy that can be transformed into creative combinations. Perfect for stress-relief for students, engineers, and office workers.
+                    <br><br>
+                    <b>DEFORMATION TOY:</b> Change shape into swords, robots, or monsters anytime. It’s a great gadget to pass the time and get creative.
+                    <br><br>
+                    <b>STRESS-RELIEF:</b> Helps release anxiety and keeps your mind flowing. Novel gift for birthdays, Teacher's Day, or Christmas.
+                </div>
+                <span class="read-more" onclick="toggleReadMore('desc2')">Read More...</span>
+            </div>
+            <div class="btn-group">
+                <a href="https://www.amazon.com/dp/B0D531KWFV" target="_blank" class="btn">View on Amazon</a>
+                <a href="#" onclick="shareOnWhatsApp('Magnetic Fidget Pen', 'https://www.amazon.com/dp/B0D531KWFV')" class="share-wa"><i class="fa fa-whatsapp"></i></a>
+            </div>
         </div>
 
-        <div class="card tech">
-            <img src="https://m.media-amazon.com/images/I/61dJHCFo1oL._AC_SL1500_.jpg" alt="iPhone Case">
-            <h3>SUPFINE Magnetic Case</h3>
-            <p style="padding: 0 10px; font-size: 0.9rem;">Military Grade Protection</p>
-            <a href="https://www.amazon.com/dp/B0CJDVRD41" target="_blank" class="btn">View on Amazon</a>
-            <a href="#" onclick="shareOnWhatsApp('iPhone Case', 'https://www.amazon.com/dp/B0CJDVRD41')" class="share-wa"><i class="fa fa-whatsapp"></i></a>
+        <div class="card">
+            <img src="https://m.media-amazon.com/images/I/61dJHCFo1oL._AC_SL1500_.jpg" alt="SUPFINE iPhone Case">
+            <div class="card-content">
+                <h3>SUPFINE Magnetic Case</h3>
+                <div class="price-tag">Color: Black | iPhone 14 Pro</div>
+                <div class="specs">
+                    <b>Brand:</b> SUPFINE | <b>Material:</b> TPU + Hard PC<br>
+                    <b>Protection:</b> 10ft Military Drop Test
+                </div>
+                <div class="description" id="desc3">
+                    【Super Magnetic】Powerful built-in magnets for easier place-and-go wireless charging, fully compatible with MagSafe.
+                    <br><br>
+                    【Shock Protection】Passing military drop tests up to 10 feet, effectively protecting your device from violent impacts.
+                    <br><br>
+                    【Matte Translucent Back】Premium touch and excellent grip. The matte coating blocks smudges, fingerprints, and scratches.
+                    <br><br>
+                    【Compatibility】Precise cutouts for easy access to all ports, buttons, and cameras. Soft, sensitive buttons with good response.
+                </div>
+                <span class="read-more" onclick="toggleReadMore('desc3')">Read More...</span>
+            </div>
+            <div class="btn-group">
+                <a href="https://www.amazon.com/dp/B0CJDVRD41" target="_blank" class="btn">View on Amazon</a>
+                <a href="#" onclick="shareOnWhatsApp('SUPFINE Case', 'https://www.amazon.com/dp/B0CJDVRD41')" class="share-wa"><i class="fa fa-whatsapp"></i></a>
+            </div>
         </div>
 
     </div>
 </div>
 
-<footer id="privacy-policy">
-    <p>&copy; 2026 Smart Gear Online PK | Shop with Usman</p>
-    <p style="font-size: 0.8rem;">We earn a small commission from qualifying Amazon purchases.</p>
+<div id="comingSoon">
+    <i class="fa fa-mobile" style="font-size: 5rem; color: #e67e22;"></i><br>
+    Mobile Comparison Section<br>
+    <span style="font-size: 1.2rem; color: #666; font-weight: normal;">🚀 Coming Soon - We are working on it!</span>
+</div>
+
+<footer>
+    <p><b>Smart Gear Online PK</b></p>
+    <p>Premium Gadgets & Tech Reviews. Shop the future with Usman.</p>
+    <p style="font-size: 0.8rem; margin-top: 10px;">&copy; 2026 Usman Store | Amazon Affiliate Site</p>
 </footer>
 
 <script>
-    function toggleTheme() {
-        document.body.classList.toggle('dark-mode');
+    function toggleReadMore(id) {
+        let desc = document.getElementById(id);
+        desc.classList.toggle('expanded');
+        event.target.innerText = desc.classList.contains('expanded') ? "Show Less" : "Read More...";
     }
-    function shareOnWhatsApp(name, link) {
-        let text = "Check out this gadget: " + name + " - " + link;
-        window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text));
+
+    function showSection(type) {
+        let products = document.getElementById('productsWrapper');
+        let soon = document.getElementById('comingSoon');
+        let btns = document.querySelectorAll('.filter-nav button');
+        
+        btns.forEach(b => b.classList.remove('active'));
+        if(type === 'all') document.getElementById('btnAll').classList.add('active');
+        if(type === 'gadgets') document.getElementById('btnGadgets').classList.add('active');
+        if(type === 'mobile') document.getElementById('btnMobile').classList.add('active');
+
+        if (type === 'mobile') {
+            products.style.display = 'none';
+            soon.style.display = 'block';
+        } else {
+            products.style.display = 'block';
+            soon.style.display = 'none';
+        }
     }
+
     function searchGadgets() {
         let input = document.getElementById('gadgetSearch').value.toLowerCase();
         let cards = document.getElementsByClassName('card');
+        showSection('all');
         for (let card of cards) {
             let title = card.getElementsByTagName('h3')[0].innerText.toLowerCase();
             card.style.display = title.includes(input) ? "" : "none";
         }
+    }
+
+    function shareOnWhatsApp(name, link) {
+        let text = "Check out this " + name + " on Smart Gear PK: " + link;
+        window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text));
     }
 </script>
 </body>
