@@ -13,7 +13,6 @@
             --nav-bg: #232f3e; 
             --accent: #ff9900; 
             --border: #ddd;
-            --desc-color: #555;
         }
         
         body.dark-mode { 
@@ -22,231 +21,141 @@
             --card-bg: #2d2d2d; 
             --nav-bg: #000000; 
             --border: #444;
-            --desc-color: #bbb;
         }
 
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; padding: 0; 
-            background-color: var(--bg-color); 
-            color: var(--text-color); 
-            transition: 0.4s; 
-            overflow-x: hidden;
-        }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); transition: 0.4s; }
 
-        /* 1. Preloader CSS */
-        #preloader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--nav-bg); display: flex; flex-direction: column;
-            justify-content: center; align-items: center; z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-        .loader-logo {
-            width: 80px; height: 80px; border: 5px solid var(--accent);
-            border-top: 5px solid transparent; border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        .loader-text { color: white; margin-top: 20px; font-weight: bold; letter-spacing: 2px; }
+        /* Preloader */
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--nav-bg); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; }
+        .loader-logo { width: 60px; height: 60px; border: 5px solid var(--accent); border-top: 5px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Header & Navigation */
-        header { 
-            background-color: var(--nav-bg); color: white; padding: 40px 20px; 
-            text-align: center; border-bottom: 5px solid var(--accent);
-        }
-        .dark-toggle { 
-            position: absolute; top: 20px; right: 20px; 
-            background: var(--accent); border: none; color: white; 
-            width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 100;
-        }
+        header { background-color: var(--nav-bg); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--accent); position: relative; }
+        .dark-toggle { position: absolute; top: 20px; right: 20px; background: var(--accent); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
 
-        .search-engine-box {
-            max-width: 600px; margin: -30px auto 20px;
-            background: var(--card-bg); padding: 10px; border-radius: 50px;
-            display: flex; box-shadow: 0 10px 25px rgba(0,0,0,0.2); position: relative; z-index: 10;
-        }
-        .search-engine-box input {
-            flex: 1; border: none; padding: 12px 25px; outline: none;
-            background: transparent; color: var(--text-color); font-size: 1rem;
-        }
+        .search-engine-box { max-width: 600px; margin: -30px auto 20px; background: var(--card-bg); padding: 10px; border-radius: 50px; display: flex; box-shadow: 0 10px 25px rgba(0,0,0,0.2); position: relative; z-index: 10; }
+        .search-engine-box input { flex: 1; border: none; padding: 12px 20px; outline: none; background: transparent; color: var(--text-color); }
 
-        .status-container { text-align: center; margin: 20px 0; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .nav-btn {
-            background: var(--card-bg); padding: 10px 20px; border-radius: 30px;
-            border: 2px solid var(--accent); font-weight: bold; color: var(--accent); cursor: pointer;
-        }
+        .status-container { text-align: center; margin: 20px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .nav-btn { background: var(--card-bg); padding: 10px 20px; border-radius: 30px; border: 2px solid var(--accent); font-weight: bold; color: var(--accent); cursor: pointer; }
         .nav-btn.active { background: var(--accent); color: white; }
 
-        /* Section Banners */
-        .section-banner {
-            width: 90%; max-width: 1100px; margin: 30px auto 10px; height: 180px;
-            border-radius: 15px; display: flex; align-items: center; justify-content: center;
-            background-size: cover; background-position: center; position: relative;
-            color: white; font-size: 1.5rem; font-weight: bold; text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
-        }
+        .section-banner { width: 90%; max-width: 1000px; margin: 20px auto; border-radius: 15px; overflow: hidden; height: 120px; display: flex; align-items: center; justify-content: center; background-size: cover; background-position: center; position: relative; color: white; font-weight: bold; font-size: 1.5rem; text-shadow: 2px 2px 5px black; }
 
-        /* Product Grid */
-        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; gap: 25px; }
-        .card { 
-            background: var(--card-bg); border-radius: 12px; width: 300px; 
-            overflow: hidden; border: 1px solid var(--border); transition: 0.3s;
-        }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 200px; object-fit: contain; background: #fff; padding: 10px; }
-        .card-info { padding: 20px; }
-        .card-info h3 { margin: 0 0 10px; color: var(--accent); font-size: 1.2rem; }
-        .price { color: #2ecc71; font-size: 1.3rem; font-weight: bold; display: block; margin-bottom: 10px; }
-        .buy-btn { 
-            display: block; background: var(--accent); color: white; 
-            text-align: center; padding: 12px; text-decoration: none; border-radius: 8px; font-weight: bold;
-        }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; gap: 20px; }
+        .card { background: var(--card-bg); border-radius: 12px; width: 260px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; height: 180px; object-fit: contain; background: white; padding: 10px; }
+        .card-info { padding: 15px; text-align: center; }
+        .card-info h3 { margin: 0; font-size: 1rem; color: var(--accent); }
+        .price { color: #2ecc71; font-weight: bold; font-size: 1.1rem; margin: 5px 0; display: block; }
+        .buy-btn { display: block; background: var(--accent); color: white; text-align: center; padding: 8px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 0.9rem; }
 
-        /* Reviews Section */
-        .reviews-container { max-width: 900px; margin: 50px auto; padding: 20px; }
-        .review-card {
-            background: var(--card-bg); padding: 15px; border-radius: 10px;
-            border-left: 5px solid var(--accent); margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        footer { text-align: center; padding: 40px; background: var(--nav-bg); color: white; margin-top: 50px; }
-        .float-wa { 
-            position: fixed; bottom: 30px; right: 30px; background: #25D366; 
-            color: white; width: 60px; height: 60px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 100;
-        }
+        .reviews, .privacy-section { max-width: 1000px; margin: 20px auto; padding: 20px; background: var(--card-bg); border-radius: 15px; border: 1px solid var(--border); }
+        footer { text-align: center; padding: 30px; background: var(--nav-bg); color: white; margin-top: 40px; }
+        .float-wa { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; text-decoration: none; z-index: 100; }
     </style>
 </head>
 <body>
 
-<div id="preloader">
-    <div class="loader-logo"></div>
-    <div class="loader-text">SMART GEAR PK</div>
-</div>
+<div id="preloader"><div class="loader-logo"></div><div style="color:white; margin-top:10px;">Smart Gear PK</div></div>
 
 <header>
     <button class="dark-toggle" onclick="toggleDarkMode()"><i class="fa fa-moon-o" id="modeIcon"></i></button>
     <h1>Smart Gear PK</h1>
-    <p>Premium Tech Hub by Usman</p>
+    <p>Every Mobile, Every Gear</p>
 </header>
 
 <div class="search-engine-box">
-    <input type="text" id="mainSearch" placeholder="Search gadgets, mobiles, cases..." onkeyup="searchSite()">
+    <input type="text" id="mainSearch" placeholder="Search your mobile model (e.g. iPhone 14)..." onkeyup="searchSite()">
 </div>
 
 <div class="status-container">
-    <button class="nav-btn active" onclick="filterCategory('all', event)">All</button>
-    <button class="nav-btn" onclick="filterCategory('gadget', event)">Gadgets</button>
-    <button class="nav-btn" onclick="filterCategory('case', event)">Mobile Cases</button>
-    <button class="nav-btn" onclick="showComingSoon()">Mobile Comparison</button>
+    <button class="nav-btn active" onclick="filterCategory('all', event)">All Collection</button>
+    <button class="nav-btn" onclick="filterCategory('gadget', event)">Smart Gadgets</button>
+    <button class="nav-btn" onclick="filterCategory('case', event)">Mobile Covers</button>
 </div>
 
-<div class="section-banner" id="gadget-banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1000&q=80');">
-    LATEST GADGETS
-</div>
+<div class="section-banner" id="gadget-banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=1000');">SMART GADGETS</div>
 <div class="container" id="gadgetGrid">
-    <div class="card" data-name="smart health ring" data-category="gadget">
+    <div class="card" data-category="gadget" data-name="smart health ring">
         <img src="https://m.media-amazon.com/images/I/61ffOITjI-L._AC_SX569_.jpg" alt="Ring">
         <div class="card-info">
             <h3>Smart Health Ring</h3>
             <span class="price">Rs. 8,500</span>
-            <a href="https://www.amazon.com/dp/B0GHTYJ24L" target="_blank" class="buy-btn">View on Amazon</a>
+            <a href="#" class="buy-btn">View Details</a>
         </div>
     </div>
-
-    <div class="card" data-name="magnetic fidget pen" data-category="gadget">
+    <div class="card" data-category="gadget" data-name="magnetic fidget pen">
         <img src="https://m.media-amazon.com/images/I/71eZP0KRDkL._AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Pen">
         <div class="card-info">
             <h3>Magnetic Fidget Pen</h3>
             <span class="price">Rs. 2,850</span>
-            <a href="https://www.amazon.com/dp/B0D531KWFV" target="_blank" class="buy-btn">View on Amazon</a>
+            <a href="#" class="buy-btn">View Details</a>
         </div>
     </div>
 </div>
 
-<div class="section-banner" id="case-banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1000&q=80');">
-    PREMIUM MOBILE CASES
-</div>
+<div class="section-banner" id="case-banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1000');">MOBILE COVERS</div>
 <div class="container" id="caseGrid">
-    <div class="card" data-name="iphone 15 pro max case" data-category="case">
-        <img src="https://m.media-amazon.com/images/I/71z78Y6Y8rL._AC_SL1500_.jpg" alt="iPhone Case">
+    
+    <div class="card" data-category="case" data-name="iphone 15 pro max cover">
+        <img src="https://m.media-amazon.com/images/I/71z78Y6Y8rL._AC_SL1500_.jpg" alt="iPhone 15">
         <div class="card-info">
-            <h3>iPhone 15 Pro Max Case</h3>
+            <h3>iPhone 15 Pro Max Cover</h3>
             <span class="price">Rs. 1,500</span>
-            <a href="#" class="buy-btn">Order on WhatsApp</a>
+            <a href="https://wa.me/923000000000?text=I%20want%20iPhone%2015%20Pro%20Max%20Cover" class="buy-btn">Order Now</a>
         </div>
     </div>
-    <div class="card" data-name="samsung s24 ultra case" data-category="case">
-        <img src="https://m.media-amazon.com/images/I/719n9m-5+5L._AC_SL1500_.jpg" alt="Samsung Case">
+
+    <div class="card" data-category="case" data-name="iphone 14 pro cover">
+        <img src="https://m.media-amazon.com/images/I/61m6-N7I+fL._AC_SL1500_.jpg" alt="iPhone 14">
         <div class="card-info">
-            <h3>Samsung S24 Ultra Case</h3>
-            <span class="price">Rs. 1,800</span>
-            <a href="#" class="buy-btn">Order on WhatsApp</a>
+            <h3>iPhone 14 Pro Cover</h3>
+            <span class="price">Rs. 1,200</span>
+            <a href="https://wa.me/923000000000?text=I%20want%20iPhone%2014%20Pro%20Cover" class="buy-btn">Order Now</a>
         </div>
     </div>
+
+    <div class="card" data-category="case" data-name="samsung s24 ultra cover">
+        <img src="https://m.media-amazon.com/images/I/719n9m-5+5L._AC_SL1500_.jpg" alt="S24 Ultra">
+        <div class="card-info">
+            <h3>Samsung S24 Ultra Cover</h3>
+            <span class="price">Rs. 1,800</span>
+            <a href="https://wa.me/923000000000?text=I%20want%20Samsung%20S24%20Ultra%20Cover" class="buy-btn">Order Now</a>
+        </div>
+    </div>
+
+    <div class="card" data-category="case" data-name="infinix note 30 cover">
+        <img src="https://m.media-amazon.com/images/I/61D8oK7+ZSL._AC_SL1000_.jpg" alt="Infinix">
+        <div class="card-info">
+            <h3>Infinix Note 30 Cover</h3>
+            <span class="price">Rs. 950</span>
+            <a href="https://wa.me/923000000000?text=I%20want%20Infinix%20Note%2030%20Cover" class="buy-btn">Order Now</a>
+        </div>
+    </div>
+
 </div>
 
-<div class="reviews-container">
-    <h2 style="text-align: center; color: var(--accent);">Customer Reviews</h2>
-    <div class="review-card">
-        <strong>Ali Raza:</strong> "Bhai Smart Ring kamaal ki hai, bilkul original product mili!"
-    </div>
-    <div class="review-card">
-        <strong>Sara Khan:</strong> "Magnetic pen bacho aur baron dono ke liye best hai. Highly recommend."
-    </div>
+<div class="reviews">
+    <h2 style="text-align: center; color: var(--accent);">Happy Customers</h2>
+    <div class="review-card"><strong>Usama:</strong> "Bhai S24 Ultra ka cover fit aya hai bilkul!"</div>
 </div>
 
-<a href="https://wa.me/923000000000" class="float-wa" target="_blank"><i class="fa fa-whatsapp"></i></a>
+<div class="privacy-section">
+    <h2>Privacy Policy</h2>
+    <p>Smart Gear PK values your privacy. We don't share your data.</p>
+</div>
 
-<footer>
-    <p><strong>Smart Gear Online PK</strong> | Created by Usman</p>
-</footer>
+<footer><p><strong>Smart Gear PK</strong> | Created by Usman</p></footer>
+
+<a href="https://wa.me/923000000000" class="float-wa"><i class="fa fa-whatsapp"></i></a>
 
 <script>
-    // Preloader Logic
     window.addEventListener('load', () => {
-        setTimeout(() => {
-            const loader = document.getElementById('preloader');
-            loader.style.opacity = '0';
-            setTimeout(() => { loader.style.display = 'none'; }, 500);
-        }, 1000);
+        setTimeout(() => { document.getElementById('preloader').style.display = 'none'; }, 1000);
     });
 
     function toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
-        const icon = document.getElementById('modeIcon');
-        icon.className = document.body.classList.contains('dark-mode') ? 'fa fa-sun-o' : 'fa fa-moon-o';
-    }
-
-    function filterCategory(cat, event) {
-        let cards = document.querySelectorAll('.card');
-        let btns = document.querySelectorAll('.nav-btn');
-        btns.forEach(btn => btn.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-
-        cards.forEach(card => {
-            if (cat === 'all') card.style.display = "block";
-            else {
-                let category = card.getAttribute('data-category');
-                card.style.display = (category === cat) ? "block" : "none";
-            }
-        });
-
-        // Hide/Show Banners
-        document.getElementById('gadget-banner').style.display = (cat === 'all' || cat === 'gadget') ? 'flex' : 'none';
-        document.getElementById('case-banner').style.display = (cat === 'all' || cat === 'case') ? 'flex' : 'none';
-    }
-
-    function showComingSoon() { alert("Mobile Comparison feature is Coming Soon!"); }
-
-    function searchSite() {
-        let input = document.getElementById('mainSearch').value.toLowerCase();
-        let cards = document.querySelectorAll('.card');
-        cards.forEach(card => {
-            let name = card.getAttribute('data-name').toLowerCase();
-            card.style.display = name.includes(input) ? "block" : "none";
-        });
-    }
-</script>
-
-</body>
-</html>
+        const icon = document.getElementById('
